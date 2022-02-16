@@ -18,7 +18,7 @@
 
 **案例：**
 
-<img src="../img/zyym/zyym1.jpg" alt="zyym1" style="zoom: 25%;" />
+![](../.gitbook/assets/zyym1.jpg)
 
 ### 3、设置GitBook端域名跳转
 
@@ -26,11 +26,7 @@
 
 **案例：**
 
-<img src="../img/zyym/zyym2.jpg" alt="zyym2" style="zoom: 33%;" />
-
-<img src="../img/zyym/zyym3.jpg" alt="zyym3" style="zoom:33%;" />
-
-<img src="../img/zyym/zyym4.jpg" alt="zyym4" style="zoom:33%;" />
+![](../.gitbook/assets/zyym2.jpg) ![](../.gitbook/assets/zyym3.jpg) ![](../.gitbook/assets/zyym4.jpg)
 
 ## 常见问题
 
