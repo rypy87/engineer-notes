@@ -2,6 +2,8 @@
 
 * [大叔的随笔](README.md)
 * [免责声明](mian-ze-sheng-ming.md)
+* [ECMAScript语法](ecmascript-yu-fa/README.md)
+  * [ECMASCript](ecmascript-yu-fa/ecmascript.md)
 * [VUE3.0](vue3.0/README.md)
   * [VUE基础](vue3.0/vue-ji-chu.md)
 * [GitBook使用](gitbook-shi-yong/README.md)
