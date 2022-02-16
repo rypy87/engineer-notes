@@ -20,26 +20,26 @@ VUE库=>vue.js
 
 VUE框架=>VUE全家桶（vue-cli 脚手架、vue-router路由跳转、vuex状态管理）。
 
-##### 优点：
+**优点：**
 
 ```
-1.轻量级的数据框架
-2.双向数据绑定
-3.提供了指令
-4.组件化开发
-5.客户端路由
-6.状态管理
+轻量级的数据框架
+双向数据绑定
+提供了指令
+组件化开发
+客户端路由
+状态管理
 ```
 
-##### 缺点：
+**缺点：**
 
 ```
-1.Vue底层基于Object.defineProperty实现响应式，即vue使用了IE8无法模拟的ECMAScript5.0特性,这个api属性本身不支持IE8及以下浏览器，导致Vue不支持IE8及以下浏览器版本。
-2.Vue打造的是SPA模式，所以不利于搜索引擎优化(SEO)；
-3.由于VUE客户端渲染(CSR)的先天不足，导致首屏加载时间长，且可能出现闪屏现象。
+Vue底层基于Object.defineProperty实现响应式，即vue使用了IE8无法模拟的ECMAScript5.0特性,这个api属性本身不支持IE8及以下浏览器，导致Vue不支持IE8及以下浏览器版本。
+Vue打造的是SPA模式，所以不利于搜索引擎优化(SEO)；
+于VUE客户端渲染(CSR)的先天不足，导致首屏加载时间长，且可能出现闪屏现象。
 ```
 
-##### 核心：
+**核心：**
 
 数据驱动和组件化系统。
 
@@ -70,8 +70,7 @@ SPA（single page application），单页面应用，是一种网络应用程序
 
 #### 缺点：
 
-1、初次访问加载时间过长，需要统一加载所有静态资源文件，仅部分渲染页面可按需加载。
-2、不能使用浏览器前进后退功能，所有的页面切换需要自己建立堆栈管理;
+1、初次访问加载时间过长，需要统一加载所有静态资源文件，仅部分渲染页面可按需加载。 2、不能使用浏览器前进后退功能，所有的页面切换需要自己建立堆栈管理;
 
 3、SEO(搜索引擎优化)，优化难度较大，因为页面内容动态渲染，部分数据优化抓取较难。
 
@@ -86,7 +85,7 @@ b页面 -> index.html/#/b
 
 ### MPA:
 
- MPA（Multi Page Application），多页面应用。项目应用中存在多个页面，每个页面相互独立，页面之间跳转需要重新加载整个页面静态资源文件。
+MPA（Multi Page Application），多页面应用。项目应用中存在多个页面，每个页面相互独立，页面之间跳转需要重新加载整个页面静态资源文件。
 
 #### 优点：
 
@@ -105,19 +104,19 @@ b页面—>b.html
 
 ### SPA与MPA的区别
 
-|                   | 单页面（SPA）                                                | 多页面（MPA）                                                |
-| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 结构              | 一个主入口页面+多个组件模块                                  | 多页面构成                                                   |
-| 资源文件          | 组件公用的静态资源只需要加载一次                             | 每个页面都需要加载自己的静态资源文件                         |
-| 刷新方式          | 局部刷新或更改刷新                                           | 整页刷新                                                     |
-| url 模式          | a.com/#/pageone a.com/#/pagetwo                              | a.com/pageone.html a.com/pagetwo.html                        |
-| 用户体验          | 页面切换快，用户体验良好。当初次加载文件过多时，需要做相关的调优。 | 页面切换加载缓慢，流畅度相对较差，当网速过慢时，会出现白屏加载，用户体验比较差。 |
-| 转场动画          | Vue 提供了 transition 的封装组件，容易实现                   | 相对较难实现                                                 |
-| 数据传递          | 单页面，使用Vuex全局变量即可                                 | 需要依赖url传参，接口保存、或者服务器端存储（cookie、session) 、本地存储（localStorage、sessionStorage）等 |
-| 搜索引擎优化(SEO) | 不利于SEO检索，需要单独处理，可利用服务器端渲染(SSR)优化。   | 利于SEO检索优化                                              |
-| 适用场景          | 适用于高要求的体验度、追求界面流畅的应用，如，经常切换页面的场景和数据传递较多，多表单的场景。 | 适用于需要较高搜索引擎的应用                                 |
-| 路由模式          | 可以使用 hash ，也可以使用 history                           | 普通连接跳转                                                 |
-| 开发成本          | 开发成本较高，后期维护成本较低，常需借助专业的框架           | 开发成本较低 ，维护成本较高，页面代码存在冗余现象            |
+|             | 单页面（SPA）                                        | 多页面（MPA）                                                                    |
+| ----------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
+| 结构          | 一个主入口页面+多个组件模块                                  | 多页面构成                                                                       |
+| 资源文件        | 组件公用的静态资源只需要加载一次                                | 每个页面都需要加载自己的静态资源文件                                                          |
+| 刷新方式        | 局部刷新或更改刷新                                       | 整页刷新                                                                        |
+| url 模式      | a.com/#/pageone a.com/#/pagetwo                 | a.com/pageone.html a.com/pagetwo.html                                       |
+| 用户体验        | 页面切换快，用户体验良好。当初次加载文件过多时，需要做相关的调优。               | 页面切换加载缓慢，流畅度相对较差，当网速过慢时，会出现白屏加载，用户体验比较差。                                    |
+| 转场动画        | Vue 提供了 transition 的封装组件，容易实现                   | 相对较难实现                                                                      |
+| 数据传递        | 单页面，使用Vuex全局变量即可                                | 需要依赖url传参，接口保存、或者服务器端存储（cookie、session) 、本地存储（localStorage、sessionStorage）等 |
+| 搜索引擎优化(SEO) | 不利于SEO检索，需要单独处理，可利用服务器端渲染(SSR)优化。               | 利于SEO检索优化                                                                   |
+| 适用场景        | 适用于高要求的体验度、追求界面流畅的应用，如，经常切换页面的场景和数据传递较多，多表单的场景。 | 适用于需要较高搜索引擎的应用                                                              |
+| 路由模式        | 可以使用 hash ，也可以使用 history                        | 普通连接跳转                                                                      |
+| 开发成本        | 开发成本较高，后期维护成本较低，常需借助专业的框架                       | 开发成本较低 ，维护成本较高，页面代码存在冗余现象                                                   |
 
 ## VUE的安装：
 
@@ -125,13 +124,13 @@ b页面—>b.html
 
 #### CDN（指定路径）
 
-##### 2.0版本
+**2.0版本**
 
 ```
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 ```
 
-##### 3.0版本
+**3.0版本**
 
 ```
 <script src="https://unpkg.com/vue@next"></script>
@@ -139,13 +138,13 @@ b页面—>b.html
 
 #### npm社区
 
-##### 2.0版本
+**2.0版本**
 
 ```
 npm i vue@latest
 ```
 
-##### 3.0版本
+**3.0版本**
 
 ```
 npm i vue 
@@ -155,14 +154,14 @@ npm i vue
 
 #### 脚手架
 
-##### 2.0版本
+**2.0版本**
 
 ```
 npm i -g @vue/cli
 vue create hello-vue3
 ```
 
-##### 3.0版本
+**3.0版本**
 
 (基于vite生成脚手架)
 
@@ -234,7 +233,7 @@ methods:定义方法的方法，JSON格式的数据形式，可以跟输出标�
 
 data选项:是一个特殊函数，其返回值需要返回对象。
 
-### {{}}模板语法
+### \{{\}}模板语法
 
 使用规则：
 
@@ -262,13 +261,13 @@ data选项:是一个特殊函数，其返回值需要返回对象。
 
 #### 非表单元素绑定
 
-##### v-text
+**v-text**
 
 ```
 <div v-text="text"></div>
 ```
 
-##### v-html
+**v-html**
 
 ```
 <div v-html="text"></div>
@@ -295,7 +294,7 @@ Vue.createApp({
     }).mount("#app");
 ```
 
-##### v-model
+**v-model**
 
 **基本语法**
 
@@ -387,7 +386,7 @@ Vue.createApp({
 
 #### 数据绑定方式的区别
 
-1、{{}}，纯文本输出，使用简单，如果应用在首页会出现闪屏问题，即当js文件加载过慢时，会先被识别为文本显示，因此出现闪屏，建议不适用在首页。
+1、\{{\}}，纯文本输出，使用简单，如果应用在首页会出现闪屏问题，即当js文件加载过慢时，会先被识别为文本显示，因此出现闪屏，建议不适用在首页。
 
 2、v-text，纯文本输出，可以处理闪屏问题，因为当文件过慢时，页面时白屏显示。
 
@@ -403,9 +402,9 @@ Vue.createApp({
 
 可以绑定已知属性，也可以绑定自定义属性。
 
-##### 标签规定属性
+**标签规定属性**
 
-###### v-bind:src
+**v-bind:src**
 
 绑定src类型数据
 
@@ -413,7 +412,7 @@ Vue.createApp({
 <img v-bind:src="imgstr">
 ```
 
-###### v-bind:href
+**v-bind:href**
 
 绑定href类型数据
 
@@ -421,13 +420,13 @@ Vue.createApp({
 <a v-bind:href="urlstr">点击我</a>
 ```
 
-##### 标签自定义属性
+**标签自定义属性**
 
 ```
 <div v-bind:c="name">我是自定义属性演示</div>
 ```
 
-##### v-bind的简写
+**v-bind的简写**
 
 ```
 <标签 :属性名="值"></标签>
@@ -439,7 +438,7 @@ Vue.createApp({
 
 事件监听指令。
 
-##### 语法
+**语法**
 
 ```
 <标签 v-on:事件名称="方法名('参数'),[方法名('参数')]"></标签>
@@ -451,7 +450,7 @@ v-on:可以简写为@
 
 注：定义方法的时候，同名方法会被覆盖。
 
-##### 按钮事件案例
+**按钮事件案例**
 
 ```
 <div id="app">
@@ -509,9 +508,9 @@ v-on:可以简写为@
 
 #### 修饰符
 
-##### 回顾
+**回顾**
 
-###### 阻止默认事件
+**阻止默认事件**
 
 ```
 event.preventDefault()
@@ -537,7 +536,7 @@ Vue.createApp({
     }).mount("#app");
 ```
 
-###### 阻止事件传播
+**阻止事件传播**
 
 ```
 event.stopPropagation()
@@ -545,7 +544,7 @@ event.stopPropagation()
 
 **案例：**
 
-```vue
+```
 <div id="app">
     <div id="div2" @click="getAge($event,'fathewr')" :style="{background:'red'}">父级
         <p id="p2" @click="getAge($event,'ch')" :style="{background:'blue'}">子级</p>
@@ -564,7 +563,7 @@ event.stopPropagation()
 </script>
 ```
 
-##### 常用事件修饰符
+**常用事件修饰符**
 
 **基本语法**
 
@@ -593,7 +592,7 @@ event.stopPropagation()
 
 注： .passive 和 .prevent 不能一起使用，因为 .prevent 将会被忽略。
 
-##### 键盘按键修饰符
+**键盘按键修饰符**
 
 **基本语法：**
 
@@ -617,7 +616,7 @@ event.stopPropagation()
 <input @keyup.enter="getAge">
 ```
 
-##### 鼠标按键修饰符
+**鼠标按键修饰符**
 
 ```
 <标签 @鼠标事件.鼠标修饰符=""></标签>
@@ -632,7 +631,7 @@ event.stopPropagation()
     <div id="div2" @mousedown.right="getAge($event,'fathewr')" :style="{background:'red'}">父级</div>
 ```
 
-##### 系统修饰符
+**系统修饰符**
 
 **基本语法：**
 
@@ -650,7 +649,7 @@ event.stopPropagation()
  <input @keyup.alt.enter="getAge">
 ```
 
-##### 鼠标按键修饰符
+**鼠标按键修饰符**
 
 ```
 <标签 @鼠标事件.鼠标修饰符=""></标签>
@@ -756,14 +755,14 @@ datalist:[
 
 #### 动态类名指令（:class）
 
-##### 语法
+**语法**
 
 ```
 <标签 :class="变量"></标签>
 <标签 :class="{类名1:布尔类型,类名2:布尔类型}"></标签>
 ```
 
-##### 案例
+**案例**
 
 **样式：**
 
@@ -802,13 +801,13 @@ datalist:[
 
 #### 动态行间样式指令(:style)
 
-##### 语法：
+**语法：**
 
 ```
 <标签 :style="{key:value}"></标签>
 ```
 
-##### 案例：
+**案例：**
 
 ```
     <div :style="{'color':'red',background:'yellow'}">憨憨嘻嘻</div>
@@ -935,9 +934,9 @@ VUE2.0，包含8个生命周期钩子函数，beforeCreate(组件实例刚刚被
 
 #### 函数图解
 
-![lifecycle](C:/Users/rypy/Desktop/vue基础/img/lifecycle.png)
+![](../.gitbook/assets/vue-smzq2.png)
 
-**案例**
+**例**
 
 代码显示挂载顺序
 
@@ -1021,7 +1020,7 @@ VUE3.0，包含8个生命周期钩子函数，beforeCreate(组件实例刚刚被
 
 #### 函数图解
 
-![lifecycle3](C:/Users/rypy/Desktop/vue基础/img/lifecycle3.png)
+![](../.gitbook/assets/vue-smzq3.png)
 
 **案例**
 
@@ -1257,9 +1256,9 @@ watch:{
 
 Vue提供了两个组件，处理过渡动画，分别是
 
-<Transition>和<TransitionGroup>。
+和。
 
-<Transition>组件，使用在单元素/组件的过渡动画。
+组件，使用在单元素/组件的过渡动画。
 
 ### Transition组件
 
@@ -1271,9 +1270,9 @@ Vue提供了两个组件，处理过渡动画，分别是
 
 动态组件
 
-#### 过渡样式![过渡动画](C:/Users/rypy/Desktop/vue基础/img/过渡动画.png)
+#### 过渡样式![过渡动画](https://c/Users/rypy/Desktop/vue%E5%9F%BA%E7%A1%80/img/%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB.png)
 
-##### Vue 2.0
+**Vue 2.0**
 
 ```
 v-enter，进入过渡开始状态
@@ -1284,7 +1283,7 @@ v-leave-active，离开过渡生效时状态
 v-leave-to，离开过渡结束状态
 ```
 
-##### Vue 3.0
+**Vue 3.0**
 
 ```
 v-enter-from，进入过渡开始状态
@@ -1299,7 +1298,7 @@ v-leave-to，离开过渡结束状态
 
 #### 案例
 
-##### Vue 2.0
+**Vue 2.0**
 
 ```
     <div id="app">
@@ -1318,7 +1317,7 @@ v-leave-to，离开过渡结束状态
     </script>
 ```
 
-##### Vue3.0
+**Vue3.0**
 
 ```
 <div id="app">
@@ -1338,9 +1337,9 @@ v-leave-to，离开过渡结束状态
     </script>
 ```
 
-##### css样式
+**css样式**
 
-###### index.css
+**index.css**
 
 ```
 .v-enter-active, .v-leave-active {
@@ -1353,7 +1352,7 @@ v-leave-to，离开过渡结束状态
 
 #### 实例：旋转+跑马灯
 
-##### index.html
+**index.html**
 
 ```
     <div id="app">
@@ -1373,7 +1372,7 @@ v-leave-to，离开过渡结束状态
     </script>
 ```
 
-##### index.css
+**index.css**
 
 ```
 /* 进来之前 */
@@ -1515,7 +1514,7 @@ Vue 3.0
      </script>
 ```
 
-**注：**如果在DOM模板，即HTML页面需要使用<Transition-Group>标签
+\*\*注：\*\*如果在DOM模板，即HTML页面需要使用标签
 
 index.css
 
@@ -1543,13 +1542,13 @@ https://animate.style/
 
 #### 安装
 
-##### 下载
+**下载**
 
 ```
 npm i animate.css
 ```
 
-##### CDN
+**CDN**
 
 ```
 https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
@@ -1578,7 +1577,7 @@ https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
 </script>    
 ```
 
-## 过滤器(*)
+## 过滤器(\*)
 
 在VUE2.0中可以使用过滤器格式化文本格式。
 
@@ -1593,7 +1592,7 @@ https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
 
 #### 使用案例
 
-##### 全局过滤器
+**全局过滤器**
 
 ```
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -1614,9 +1613,9 @@ https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
     </script>
 ```
 
-**注：**全局过滤器一定要写在实例化前面，否则会报错，但不影响功能。
+\*\*注：\*\*全局过滤器一定要写在实例化前面，否则会报错，但不影响功能。
 
-##### 局部过滤器
+**局部过滤器**
 
 ```
 <div id="app">
@@ -1658,9 +1657,9 @@ Vite（法语意为 "快速的"，发音 /vit/，发音同 "veet"）是一种新
 
 #### Vite搭建脚手架
 
-##### Vue3.0
+**Vue3.0**
 
-单独安装vite 
+单独安装vite
 
 ```
 npm i vite
@@ -1705,7 +1704,7 @@ cd my-vue-2.0
 npm run serve
 ```
 
-**注：**此模式下生成的vue项目不支持Node17及以上版本。
+\*\*注：\*\*此模式下生成的vue项目不支持Node17及以上版本。
 
 ### 使用可视化页面搭建
 
@@ -1729,7 +1728,7 @@ vue ui
 
 ### 组件的注册
 
-##### 组件名规则
+**组件名规则**
 
 1、全部小写
 
@@ -1737,7 +1736,7 @@ vue ui
 
 #### 全局组件
 
-##### 语法
+**语法**
 
 ```
         VUE实例.component("组件名",{
@@ -1745,7 +1744,7 @@ vue ui
         });
 ```
 
-##### 案例
+**案例**
 
 ```
     <div id="app">
@@ -1772,7 +1771,7 @@ vue ui
 
 #### 局部组件
 
-##### 语法
+**语法**
 
 ```
 Vue.createApp({
@@ -1782,7 +1781,7 @@ Vue.createApp({
 });
 ```
 
-##### 案例
+**案例**
 
 ```
 <div id="app">
@@ -1860,7 +1859,7 @@ Vue.createApp({
 
 #### 父子传值：子组件使用父组件的值
 
-##### 语法：
+**语法：**
 
 父组件，通过v-bind自定义属性传递
 
@@ -1914,7 +1913,7 @@ export default {
 </script>
 ```
 
-##### Props验证
+**Props验证**
 
 props支持的验证类型包括，null,undefined,String,Number,Boolean,Array,Object,Date,Function,Symbol八种原生类型。此外还支持自定义构造函数类型。注：null,undefined可以通过任意原生类型校验。
 
@@ -1960,7 +1959,7 @@ export default {
 }
 ```
 
-###### 自定义类型
+**自定义类型**
 
 ```
 class P{
@@ -1979,7 +1978,7 @@ export default {
 }
 ```
 
-###### props命名规则
+**props命名规则**
 
 如果props中存在属性名大写，则在调用的时候需要采用-连词符
 
