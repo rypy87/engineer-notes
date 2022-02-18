@@ -2038,3 +2038,250 @@ export default {
 }
 </script>
 ```
+
+#### 子传父传值：
+
+子组件修改父组件的值（采用自定义事件完成）
+
+##### 原理：
+
+父组件通过自定义事件，将父组件的事件对象传递给子组件，子组件使用emit方法触发父组件中的响应事件，并通过事件将值传递到父组件，父组件通过监听事件该自定义事件是否被触发，从而完成方法的调用，并接收子组件的值，从而完成修改
+
+##### 案例：
+
+###### 父组件
+
+```
+<template>
+  <div>
+    <h3>父组件</h3>
+    <button v-for="item of btnList">{{item}}</button>
+  </div>
+  <child @changeList="changeList($event)"/>
+</template>
+<script>
+import child from "./Child.vue";
+export default {
+  name: "Father",
+  components: {
+    child
+  },
+  data(){
+    return {
+      str:"btns",
+      btnList:["增加","修改","删除","确定","取消"]
+    }
+  },
+  methods:{
+    changeList({index,value}){
+      this.btnList[index]=value;
+    }
+  }
+}
+</script>
+```
+
+###### 子组件
+
+```
+<template>
+  <div>
+    <h3>子组件</h3>
+    下标：
+    <input type="text" v-model="index">
+    值：
+    <input type="text" v-model="value">
+    <button @click="changeValue()">修改</button>
+  </div>
+</template>
+<script>
+export default {
+  name: "Child",
+  data(){
+    return{
+      index:0,
+      value:""
+    }
+  },
+  methods:{
+    changeValue(){
+      this.$emit("changeList",{index:this.index,value:this.value});
+    }
+  }
+}
+</script>
+```
+
+#### 非父子传值
+
+##### EventBus(*)
+
+###### **使用步骤**
+
+1、绑定到Vue原型,其值是Vue对象。
+
+```
+Vue.prototype.EventBus=new Vue();
+```
+
+2、触发自定义事件
+
+```
+send(){
+  this.EventBus.$emit("eventA",this.dataA)
+}
+```
+
+3、绑定事件
+
+```
+mounted(){
+  this.EventBus.$on("eventA",(e)=>{
+    this.a=e
+  })
+}
+```
+
+注：Vue3.0中采用mitt替代EventBus。
+
+##### vuex
+
+##### 本地存储
+
+##### cookie
+
+### 组件的自定义事件
+
+在Vue的组件中，组件间调用的时候可以自定义事件，在触发处，使用emit方法，进行触发。
+
+#### 基本语法
+
+##### 定义
+
+```
+<组件名 @自定义事件名="处理方法(参数)"></组件名>
+```
+
+##### 触发
+
+```
+this.$emit("事件名","参数");
+```
+
+### 组件的注意事项
+
+1、组件不能直接使用父组件中的数据，需要使用props
+
+2、组件只能使用自己的子组件和公共组件
+
+3、每次调用组件，都会产生一个新的Vue实例
+
+4、v-if指令在组件上切换，会重置生命周期，v-show指令则不会。
+
+### 组件的模板引用
+
+#### 获取子组件的DOM节点
+
+如果需要在JavaScript代码中使用子组件，可以使用模板引用ref来获取子组件节点
+
+**父组件**
+
+```
+<template>
+  <child ref="bcolor"></child>
+  <h1>父组件</h1>
+  <button @click="changeColor">换色子组件</button>
+</template>
+<script>
+import child from "./Child.vue"
+export default {
+  name: "Father",
+  components:{
+    child
+  },
+  methods:{
+    changeColor(){
+      (this.$refs.bcolor).$el.style.backgroundColor="red";
+    }
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <div style="background-color: #00a8ff">我是子组件</div>
+</template>
+<script>
+export default {
+  name: "Child"
+}
+</script>
+```
+
+注：DOM节点是在mounted的时候创建完成，因此ref要使用在该生命周期之后。
+
+#### 父组件获取子组件实例
+
+使用模板引用在JavaScript代码中获取子组件实例的属性/方法
+
+**父组件**
+
+```
+<template>
+  <child ref="bcolor"></child>
+  {{cname}}
+  <h1>父组件</h1>
+  <button @click="getChildName">获取子组件属性</button>
+  <button @click="changeChildName">触发子组件方法</button>
+</template>
+<script>
+import child from "./Child.vue"
+export default {
+  name: "Father",
+  components:{
+    child
+  },
+  data(){
+    return{
+      cname:""
+    }
+  },
+  methods:{
+    changeColor(){
+      (this.$refs.bcolor).$el.style.backgroundColor="red";
+    },
+    getChildName(){
+        this.cname=this.$refs.bcolor.childName;
+    },
+    changeChildName(){
+        this.$refs.bcolor.changeCName("admin2");
+        this.getChildName()
+    }
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template></template>
+<script>
+export default {
+  name: "Child",
+  data(){
+    return{
+      childName:"admin"
+    }
+  },
+  methods:{
+    changeCName(name){
+      this.childName=name;
+    }
+  }
+}
+</script>
+```
