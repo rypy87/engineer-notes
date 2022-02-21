@@ -1855,300 +1855,15 @@ Vue.createApp({
 
 一个组件只能使用其自身的data、methods、watch、computed filters、components。
 
-### 组件间的通信
+### ref
 
-#### 父子传值：子组件使用父组件的值
+#### 属性
 
-**语法：**
+ref属性用于给元素或子组件注册引用信息，此引用信息将会被注册在父组件的$refs对象上。
 
-父组件，通过v-bind自定义属性传递
+#### 对象
 
-```
-<标签 :属性名="属性值|传值变量"></标签>
-```
-
-子组件，通过props选项接收
-
-```
-props:[..."属性名"]
-```
-
-**案例**
-
-父组件Father.vue
-
-```
-<template>
-  <div>
-    <child v-for="item of btnList" :btnName="item"></child>
-  </div>
-</template>
-<script>
-import child from "./Child.vue";
-export default {
-  name: "Father",
-  components: {
-    child
-  },
-  data(){
-    return {
-      btnList:["增加","修改","删除","确定","取消"]
-    }
-  }
-}
-</script>
-```
-
-子组件Child.vue
-
-```
-<template>
-  <button>{{btnName}}</button>
-</template>
-<script>
-export default {
-  name: "Child",
-  props:["btnName"]
-}
-</script>
-```
-
-**Props验证**
-
-props支持的验证类型包括，null,undefined,String,Number,Boolean,Array,Object,Date,Function,Symbol八种原生类型。此外还支持自定义构造函数类型。注：null,undefined可以通过任意原生类型校验。
-
-```
-export default {
-  props: {
-  	//基础校验语法
-    propA: Number,
-    // 多类型校验语法
-    propB: [String, Number],
-    // 必填校验语法
-    propC: {
-      type: String,
-      required: true
-    },
-    //带默认值的校验语法
-    propD: {
-      type: Number,
-      default: 100
-    },
-    // 对象类型/数组类型默认值的校验语法
-    propE: {
-      type: Object,
-      //默认值必须为同一函数返回 
-      default(rawProps) {
-        return { message: 'hello' }
-      }
-    },
-    //自定义校验函数
-    propF: {
-      validator(value) {
-        return ['success', 'warning', 'danger'].includes(value)
-      }
-    },
-    // 带默认值的函数
-    propG: {
-      type: Function,
-      default() {
-        return 'Default function'
-      }
-    }
-  }
-}
-```
-
-**自定义类型**
-
-```
-class P{
-	constructor(fName,LName){
-		this.fName=fName;
-		this.LName=LName;
-	}
-}
-```
-
-```
-export default {
-	props: {
-		user:P
-	}
-}
-```
-
-**props命名规则**
-
-如果props中存在属性名大写，则在调用的时候需要采用-连词符
-
-注：Props校验，默认只会浏览器控制警告。
-
-**案例**
-
-父组件
-
-```
-<template>
-  <div>
-    <child v-for="item of btnList" :btn-name="item" />
-    <child :num=1 />
-    <child :btn-name="str" />
-  </div>
-</template>
-<script>
-import child from "./Child.vue";
-export default {
-  name: "Father",
-  components: {
-    child
-  },
-  data(){
-    return {
-      str:"btns",
-      btnList:["增加","修改","删除","确定","取消"]
-    }
-  }
-}
-</script>
-```
-
-子组件
-
-```
-<template>
-  <div>
-    <button>{{btnName}}</button>
-    <div>{{num}}</div>
-  </div>
-</template>
-<script>
-export default {
-  name: "Child",
-  props:{
-    btnName:String,
-    num:{
-      type:Number,
-      required:true,
-      default(){
-        return 3
-      }
-    }
-  }
-}
-</script>
-```
-
-#### 子传父传值：
-
-子组件修改父组件的值（采用自定义事件完成）
-
-##### 原理：
-
-父组件通过自定义事件，将父组件的事件对象传递给子组件，子组件使用emit方法触发父组件中的响应事件，并通过事件将值传递到父组件，父组件通过监听事件该自定义事件是否被触发，从而完成方法的调用，并接收子组件的值，从而完成修改
-
-##### 案例：
-
-###### 父组件
-
-```
-<template>
-  <div>
-    <h3>父组件</h3>
-    <button v-for="item of btnList">{{item}}</button>
-  </div>
-  <child @changeList="changeList($event)"/>
-</template>
-<script>
-import child from "./Child.vue";
-export default {
-  name: "Father",
-  components: {
-    child
-  },
-  data(){
-    return {
-      str:"btns",
-      btnList:["增加","修改","删除","确定","取消"]
-    }
-  },
-  methods:{
-    changeList({index,value}){
-      this.btnList[index]=value;
-    }
-  }
-}
-</script>
-```
-
-###### 子组件
-
-```
-<template>
-  <div>
-    <h3>子组件</h3>
-    下标：
-    <input type="text" v-model="index">
-    值：
-    <input type="text" v-model="value">
-    <button @click="changeValue()">修改</button>
-  </div>
-</template>
-<script>
-export default {
-  name: "Child",
-  data(){
-    return{
-      index:0,
-      value:""
-    }
-  },
-  methods:{
-    changeValue(){
-      this.$emit("changeList",{index:this.index,value:this.value});
-    }
-  }
-}
-</script>
-```
-
-#### 非父子传值
-
-##### EventBus(*)
-
-###### **使用步骤**
-
-1、绑定到Vue原型,其值是Vue对象。
-
-```
-Vue.prototype.EventBus=new Vue();
-```
-
-2、触发自定义事件
-
-```
-send(){
-  this.EventBus.$emit("eventA",this.dataA)
-}
-```
-
-3、绑定事件
-
-```
-mounted(){
-  this.EventBus.$on("eventA",(e)=>{
-    this.a=e
-  })
-}
-```
-
-注：Vue3.0中采用mitt替代EventBus。
-
-##### vuex
-
-##### 本地存储
-
-##### cookie
+接收一个内部值，并返回一个响应式且可变的ref对象，此对象仅有一个属性value，指向内部的值。
 
 ### 组件的自定义事件
 
@@ -2168,15 +1883,56 @@ mounted(){
 this.$emit("事件名","参数");
 ```
 
-### 组件的注意事项
+**案例**
 
-1、组件不能直接使用父组件中的数据，需要使用props
+**组件1**
 
-2、组件只能使用自己的子组件和公共组件
+```
+<template>
+  {{msg}}
+  <com-sechild @changeMsgSOne="changeMsgSOne($event)"></com-sechild>
+</template>
+<script>
+import comSechild from "./ComEvent2.vue";
+export default {
+  name: "ComEvent",
+  components:{comSechild},
+  data(){
+    return{
+      msg:""
+    }
+  },
+  methods:{
+    changeMsgSOne({mssg}){
+      this.msg=`组件1的方法，修改msg1`+mssg;
+    }
+  }
+}
+</script>
+```
 
-3、每次调用组件，都会产生一个新的Vue实例
+**组件2**
 
-4、v-if指令在组件上切换，会重置生命周期，v-show指令则不会。
+```
+<template>
+  <button @click="comSecondEmit">组件2按钮</button>
+</template>
+<script>
+export default {
+  name: "ComEvent2",
+  data(){
+    return{
+      msg2:""
+    }
+  },
+  methods:{
+    comSecondEmit(){
+      this.$emit("changeMsgSOne", {mssg:"2修改1"});
+    }
+  }
+}
+</script>
+```
 
 ### 组件的模板引用
 
@@ -2285,3 +2041,542 @@ export default {
 }
 </script>
 ```
+
+### 组件间的通信
+
+Vue中组件间的通信方式有很多种，选择适合项目组件的方式最重要。
+
+#### v-bind指令+props属性方式
+
+此方式是Vue中最常见的一种父传子的方式。
+
+##### 语法：
+
+父组件，通过v-bind自定义属性传递
+
+```
+<标签 :属性名="属性值|传值变量"></标签>
+```
+
+子组件，通过props选项接收
+
+```
+props:[..."属性名"]
+```
+
+**案例**
+
+父组件Father.vue
+
+```
+<template>
+  <div>
+    <child v-for="item of btnList" :btnName="item"></child>
+  </div>
+</template>
+<script>
+import child from "./Child.vue";
+export default {
+  name: "Father",
+  components: {
+    child
+  },
+  data(){
+    return {
+      btnList:["增加","修改","删除","确定","取消"]
+    }
+  }
+}
+</script>
+```
+
+子组件Child.vue
+
+```
+<template>
+  <button>{{btnName}}</button>
+</template>
+<script>
+export default {
+  name: "Child",
+  props:["btnName"]
+}
+</script>
+```
+
+##### Props验证
+
+props支持的验证类型包括，null,undefined,String,Number,Boolean,Array,Object,Date,Function,Symbol八种原生类型。此外还支持自定义构造函数类型。注：null,undefined可以通过任意原生类型校验。
+
+```
+export default {
+  props: {
+  	//基础校验语法
+    propA: Number,
+    // 多类型校验语法
+    propB: [String, Number],
+    // 必填校验语法
+    propC: {
+      type: String,
+      required: true
+    },
+    //带默认值的校验语法
+    propD: {
+      type: Number,
+      default: 100
+    },
+    // 对象类型/数组类型默认值的校验语法
+    propE: {
+      type: Object,
+      //默认值必须为同一函数返回 
+      default(rawProps) {
+        return { message: 'hello' }
+      }
+    },
+    //自定义校验函数
+    propF: {
+      validator(value) {
+        return ['success', 'warning', 'danger'].includes(value)
+      }
+    },
+    // 带默认值的函数
+    propG: {
+      type: Function,
+      default() {
+        return 'Default function'
+      }
+    }
+  }
+}
+```
+
+###### 自定义类型
+
+```
+class P{
+	constructor(fName,LName){
+		this.fName=fName;
+		this.LName=LName;
+	}
+}
+```
+
+```
+export default {
+	props: {
+		user:P
+	}
+}
+```
+
+###### props命名规则
+
+如果props中存在属性名大写，则在调用的时候需要采用-连词符
+
+注：Props校验，默认只会浏览器控制警告。
+
+**案例**
+
+父组件
+
+```
+<template>
+  <div>
+    <child v-for="item of btnList" :btn-name="item" />
+    <child :num=1 />
+    <child :btn-name="str" />
+  </div>
+</template>
+<script>
+import child from "./Child.vue";
+export default {
+  name: "Father",
+  components: {
+    child
+  },
+  data(){
+    return {
+      str:"btns",
+      btnList:["增加","修改","删除","确定","取消"]
+    }
+  }
+}
+</script>
+```
+
+子组件
+
+```
+<template>
+  <div>
+    <button>{{btnName}}</button>
+    <div>{{num}}</div>
+  </div>
+</template>
+<script>
+export default {
+  name: "Child",
+  props:{
+    btnName:String,
+    num:{
+      type:Number,
+      required:true,
+      default(){
+        return 3
+      }
+    }
+  }
+}
+</script>
+```
+
+#### v-model指令+props属性方式
+
+此方式也是Vue中一种父传子的方式。
+
+##### 语法：
+
+父组件，通过v-bind自定义属性传递
+
+```
+<标签 v-model:属性名="属性值|传值变量"></标签>
+```
+
+子组件，通过props选项接收
+
+```
+props:[..."属性名"]
+```
+
+**案例**
+
+**父组件**
+
+```
+<template>
+  <child v-model:courseList="courseList"></child>
+</template>
+<script>
+import  child from "./Child.vue";
+export default {
+  name: "Father",
+  components: {child},
+  data(){
+    return{
+      courseList:["javascript","html","css","node"]
+    }
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <table >
+    <tr v-for="item of courseList">
+      <td>{{item}}</td>
+    </tr>
+  </table>
+</template>
+<script>
+export default {
+  name: "Child",
+  props:{
+    courseList:{
+      type:Array,
+      default: () => []
+    }
+  }
+}
+</script>
+```
+
+#### emit方式
+
+此方式是Vue中一种子传父的方式。通过事件触发，子组件修改父组件的值（采用自定义事件完成）
+
+###### 原理：
+
+父组件通过自定义事件，将父组件的事件对象传递给子组件，子组件使用emit方法触发父组件中的响应事件，并通过事件将值传递到父组件，父组件通过监听事件该自定义事件是否被触发，从而完成方法的调用，并接收子组件的值，从而完成修改
+
+###### 案例：
+
+**父组件**
+
+```
+<template>
+  <div>
+    <h3>父组件</h3>
+    <button v-for="item of btnList">{{item}}</button>
+  </div>
+  <child @changeList="changeList($event)"/>
+</template>
+<script>
+import child from "./Child.vue";
+export default {
+  name: "Father",
+  components: {
+    child
+  },
+  data(){
+    return {
+      str:"btns",
+      btnList:["增加","修改","删除","确定","取消"]
+    }
+  },
+  methods:{
+    changeList({index,value}){
+      this.btnList[index]=value;
+    }
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <div>
+    <h3>子组件</h3>
+    下标：
+    <input type="text" v-model="index">
+    值：
+    <input type="text" v-model="value">
+    <button @click="changeValue()">修改</button>
+  </div>
+</template>
+<script>
+export default {
+  name: "Child",
+  data(){
+    return{
+      index:0,
+      value:""
+    }
+  },
+  methods:{
+    changeValue(){
+      this.$emit("changeList",{index:this.index,value:this.value});
+    }
+  }
+}
+</script>
+```
+
+#### 综合案例
+
+![组件通信1](D:/GitHub work/engineer-notes/img/vuejc/组件通信1.png)
+
+**父组件**
+
+```
+<template>
+  <table >
+    <tr v-for="item of courseList">
+      <td>{{item}}</td>
+    </tr>
+  </table>
+  <child v-model:courseList="courseList"></child>
+</template>
+<script>
+import  child from "./Child.vue";
+export default {
+  name: "Father",
+  components: {child},
+  data(){
+    return{
+      courseList:["javascript","html","css","node"]
+    }
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <input v-model="value" type="text" placeholder="请输入"/>
+  <button @click="addCourse" type="button">添加</button>
+</template>
+<script>
+export default {
+  name: "Child",
+  props:{
+    courseList:{
+      type:Array,
+      default: () => []
+    }
+  },
+  data(){
+    return{
+      value:""
+    }
+  },
+  methods:{
+    addCourse(){
+      const  courselist=this.courseList;
+      courselist.push(this.value);
+      this.$emit("changeList",courselist);
+      this.value="";
+    }
+  }
+}
+</script>
+```
+
+#### refs方式
+
+##### this.$refs.属性名
+
+上述组件的模板引用方式，不能使用在组合API中，如果需要使用refs方式，则需要Ref对象，才能使用
+
+##### ref标签属性+ref对象
+
+此方式可以将子组件的值传递给父组件。Vue3.0版本新增。
+
+###### 语法
+
+```
+  <child-components ref="属性名"></child-components>
+```
+
+注：属性名要与子组件抛出的属性名保持一直。
+
+**案例**
+
+**父组件**
+
+```
+<template>
+  <table >
+    <tr v-for="item of childRefs?.courseList">
+      <td>{{item}}</td>
+    </tr>
+  </table>
+  <child ref="childRefs"></child>
+</template>
+<script setup>
+import { ref } from 'vue';
+import child from './Child.vue';
+const childRefs = ref(null);
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <input v-model="value" type="text" placeholder="请输入"/>
+  <button @click="addCourse" type="button">添加</button>
+</template>
+<script setup>
+import { ref, defineExpose } from 'vue'
+const courseList = ref(['JavaScript', 'HTML', 'CSS'])
+const value = ref('')
+const addCourse = () => {
+  courseList.value.push(value.value)
+  value.value = ''
+}
+defineExpose({ courseList })
+```
+
+#### provide/inject方式
+
+provide和inject方式，是Vue中提供的一对API，可以实现父组件向子组件传递数据，只要事存在直系关系，无论几代，都可以实现传递值。
+
+**案例**
+
+**父组件**
+
+```
+<template>
+  <input v-model="value" type="text" placeholder="请输入"/>
+  <button @click="addCourse" type="button">添加</button>
+  <child></child>
+</template>
+<script setup>
+  import { ref,provide } from 'vue';
+  import child from './Child.vue';
+  const value=ref("");
+  const courseList = ref(['JavaScript', 'HTML', 'CSS','Node']);
+  provide("courseList",courseList.value);
+  const addCourse = () => {
+    courseList.value.push(value.value);
+    value.value = '';
+  }
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <table >
+    <tr v-for="item of courseList">
+      <td>{{item}}</td>
+    </tr>
+  </table>
+</template>
+<script setup>
+import { ref,inject } from 'vue';
+const courseList = inject("courseList");
+</script>
+```
+
+#### 事件总线
+
+##### EventBus(*)
+
+###### **使用步骤**
+
+1、绑定到Vue原型,其值是Vue对象。
+
+```
+Vue.prototype.EventBus=new Vue();
+```
+
+2、触发自定义事件
+
+```
+send(){
+  this.EventBus.$emit("eventA",this.dataA)
+}
+```
+
+3、绑定事件
+
+```
+mounted(){
+  this.EventBus.$on("eventA",(e)=>{
+    this.a=e
+  })
+}
+```
+
+注：Vue3.0中采用mitt或tiny-emitter，替代EventBus，但大多数情况下，不推荐使用全局事件总线的方式来实现组件通信，因为虽然实现简单，但维护事件总线会很麻烦。
+
+#### 状态管理工具
+
+Vuex和Pinia是Vue3中的状态管理工具，使用这两个工具可以轻松实现组件通信。
+
+#### 本地存储
+
+localStorage和sessionStorage是HTML5提供的两个浏览器端存储，使用这两个工具可以轻松实现组件通信。
+
+#### 服务器存储
+
+cookie和session是服务器端的两个存储，使用这两个工具可以轻松实现组件通信，但要结合后端代码。
+
+### 组件的注意事项
+
+1、组件不能直接使用父组件中的数据，需要使用props
+
+2、组件只能使用自己的子组件和公共组件
+
+3、每次调用组件，都会产生一个新的Vue实例
+
+4、v-if指令在组件上切换，会重置生命周期，v-show指令则不会。
