@@ -20,6 +20,10 @@ VUE库=>vue.js
 
 VUE框架=>VUE全家桶（vue-cli 脚手架、vue-router路由跳转、vuex状态管理）。
 
+VUE2.0采用Options API的函数式API。
+
+VUE3.0采用Composition API的函数式API，相对更灵活，更清晰。
+
 **优点：**
 
 ```
@@ -2580,3 +2584,377 @@ cookie和session是服务器端的两个存储，使用这两个工具可以轻�
 3、每次调用组件，都会产生一个新的Vue实例
 
 4、v-if指令在组件上切换，会重置生命周期，v-show指令则不会。
+
+## is属性
+
+将一个组件或多个组件动态绑定给另一个组件，即多组件可以使用同一挂载点，实现动态切换。通常可以实现同路由不同页面/组件切换。每次都是重新加载组件。
+
+规则：组件名匹配就显示，不匹配就不显示。
+
+### 语法：
+
+```
+<component v-bind:is="组件名"></component>
+<component :is="组件名"></component>
+```
+
+### **案例**
+
+**组件1**
+
+```
+<template>
+  <button @click="changeCom">组件切换</button>
+  <div>
+    <component :is="viewCom"></component>
+  </div>
+</template>
+<script>
+import com2 from "./com2.vue";
+import com3 from "./com3.vue";
+export default {
+  name: "com1",
+  components:{
+    com2,
+    com3
+  },
+  data(){
+    return{
+      flag:true,
+      viewCom:"com2"
+    }
+  },
+  methods:{
+    changeCom(){
+      this.flag=!this.flag;
+      if(this.flag){
+        this.viewCom="com2";
+      }else{
+        this.viewCom="com3";
+      }
+    }
+  }
+}
+</script>
+```
+
+**组件2**
+
+```
+<template>
+{{msg}}
+</template>
+<script>
+export default {
+  name: "com2",
+  data(){
+    return{
+      msg:"组件1"
+    }
+  }
+}
+</script>
+```
+
+**组件3**
+
+```
+<template>
+  {{msg}}
+</template>
+<script>
+export default {
+  name: "com3",
+  data(){
+    return{
+      msg:"组件2"
+    }
+  }
+}
+</script>
+```
+
+## scoped属性
+
+scoped设置当前样式，当前组件有效，实现当前样式私有化，但要慎用，如果是公共组件的时候，会带来使公共组件的样式不易修改。
+
+案例：
+
+```
+<style scoped>
+h3{
+    background-color: #00a8ff;
+}
+</style>
+```
+
+## 插槽(Slots)
+
+如果需要将父组件的某段指定内容以模板的形式，传递给子组件可以使用插槽。
+
+### 匿名插槽
+
+匿名插槽会将父组件传递的所有内容/模板/组件都显示在插槽区。
+
+![slots.dbdaf1e8](C:/Users/rypy/Desktop/vue基础/img/slots.dbdaf1e8.png)
+
+#### 语法：
+
+```
+<slot></slot>
+```
+
+#### 案例：
+
+**父组件**
+
+```
+<template>
+  <child>点我，点我<button>ssssss</button></child>
+</template>
+<script>
+import  child from "./Child.vue"
+export default {
+  name: "Father",
+  components:{
+    child
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <button>
+    <slot></slot>
+  </button>
+</template>
+<script>
+export default {
+  name: "Child"
+}
+</script>
+```
+
+注：插槽可以访问父组件中的数据，但不能访问子组件，因为内容是定义在父组件。
+
+### 命名插槽
+
+当一个组件内需要多个插槽的时候，如果采用匿名插槽，每个插槽的内容都是相同，无法区分，因此可以采用命名插槽
+
+#### 语法：
+
+```
+父组件
+<template v-slot:插槽名字>插槽内容</template>
+简写：<template #插槽名字>插槽内容</template>
+子组件
+<slot name="插槽名字"></slot>
+```
+
+#### 案例：
+
+**父组件**
+
+```
+<template>
+  <child>
+    <template v-slot:header>我是头</template>
+    <template v-slot:default>我是哈哈</template>
+    <template #footer>我是底部</template>
+    <template #lefts>我是左侧</template>
+  </child>
+</template>
+<script>
+import child from "./Child.vue";
+export default {
+  name: "Father",
+  components: {child}
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <header><slot name="header"></slot></header>
+  <main><slot></slot></main>
+  <footer><slot name="footer"></slot></footer>
+  <slot name="lefts"></slot>
+</template>
+<script>
+export default {
+  name: "Child"
+}
+</script>
+```
+
+### 插槽默认值
+
+当父组件没有给插槽传递值的时候，插槽可以调取其默认值
+
+#### 语法：
+
+```
+<slot>默认值</slot>
+```
+
+#### 案例：
+
+**父组件**
+
+```
+<template>
+  <child>点我，点我<button>ssssss</button></child>
+  <child></child>
+</template>
+<script>
+import  child from "./Child.vue"
+export default {
+  name: "Father",
+  components:{
+    child
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <button>
+    <slot>我是默认值</slot>
+  </button>
+</template>
+<script>
+export default {
+  name: "Child"
+}
+</script>
+```
+
+### 作用域插槽
+
+默认情况下父组件的插槽是不能访问子组件中的数据，如果需要访问子组件中的数据，则可以使用作用域插槽。
+
+#### 变量模式值
+
+变量模式是将子组件插槽传递的值封装为一个对象，使用其属性值就可以获取值。
+
+##### 语法
+
+```
+父组件
+	<comone v-slot:插槽名="变量对象名"></comone>
+  	<comone v-slot:default="变量对象名"></comone>
+  	简写<comone v-slot="变量对象名"></comone>注：只有default可以简写
+子组件
+<slot :属性名="值|变量" :属性名="值|变量"></slot>
+```
+
+##### 案例
+
+**父组件**
+
+```
+<template>
+  <comone v-slot:header="slotValue">
+    {{slotValue.text}}
+  </comone>
+  <comone v-slot="slotValue">
+      <button v-for="item of slotValue.btnName">{{item}}</button>
+  </comone>
+</template>
+<script>
+import comone from "./com2.vue";
+export default {
+  name: "com1",
+  components:{
+    comone
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <slot :btnName="btnName"></slot>
+  <slot name="header" :text="text"></slot>
+</template>
+<script>
+export default {
+  name: "com2",
+  data(){
+    return {
+      btnName:["添加","删除"],
+      text:"功能键:"
+    }
+  }
+}
+</script>
+```
+
+#### 解构模式值
+
+插槽传递的值可以采用解构模式进行解构获取。
+
+##### 语法
+
+```
+父组件
+	<comone v-slot:插槽名="{...键名}"></comone>
+  	<comone v-slot:default="{...键名}"></comone>
+  	简写<comone v-slot="{...键名}"></comone>注：只有default可以简写
+子组件
+<slot :属性名="值|变量" :属性名="值|变量"></slot>
+```
+
+##### 案例
+
+**父组件**
+
+```
+<template>
+  <comone v-slot:header="{text}">
+    {{text}}
+  </comone>
+  <comone v-slot="{btnName}">
+      <button v-for="item of btnName">{{item}}</button>
+  </comone>
+</template>
+<script>
+import comone from "./com2.vue";
+export default {
+  name: "com1",
+  components:{
+    comone
+  }
+}
+</script>
+```
+
+**子组件**
+
+```
+<template>
+  <slot :btnName="btnName"></slot>
+  <slot name="header" :text="text"></slot>
+</template>
+<script>
+export default {
+  name: "com2",
+  data(){
+    return {
+      btnName:["添加","删除","修改"],
+      text:"功能键显示:"
+    }
+  }
+}
+</script>
+```
