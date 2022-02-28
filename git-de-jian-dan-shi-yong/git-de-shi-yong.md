@@ -32,7 +32,7 @@
 
 ### 概念
 
-Git 是一个开源的分布式版本控制系统，是目前世界上最先进、最流行的版本控制系统。可以快速高效地处理从很小到非常大的项目版本管理，对项目代码进行维护、管理、控制等操作，是团队协作开发过程中常用的版本管理工具之一（另一个是SVN）。
+Git 是一个开源的分布式版本控制系统，可以快速有效、高效地处理从很小到非常大的项目版本管理，对项目代码进行维护、管理、控制等操作，是团队协作开发过程中常用的版本管理工具之一（另一个是SVN）。
 
 ### 特点
 
@@ -44,7 +44,11 @@ Git 是一个开源的分布式版本控制系统，是目前世界上最先进�
 
 工作区：编写项目功能代码的工作区域。 暂存区：已完成的工作，临时存放的区域，等待被提交。 Git仓库区：最终存放的区域。
 
-\*\*注：\*\*git管理提交仓库，只能按顺序 工作区=>暂存区=>Git仓库区
+**注：**git管理提交仓库，只能按顺序 工作区=>暂存区=>Git仓库区
+
+### Git工作流程
+
+![Git工作流程图](D:\GitHub work\engineer-notes\img\git_pic\Git工作流程图.png)
 
 ## Git下载
 
@@ -57,8 +61,10 @@ Git 是一个开源的分布式版本控制系统，是目前世界上最先进�
 **查看配置信息**
 
 ```
-git config --list
+git config [--local/--global/--system] --list
 ```
+
+--local，查看本地仓库配置信息；--global，查看当前用户全局配置信息；--system，查看系统配置信息。
 
 **设置用户名**
 
@@ -66,13 +72,19 @@ git config --list
 git config --global user.name "你的名字或昵称"
 ```
 
-设置邮箱
+**设置邮箱**
 
 ```
 git config --global user.email "你的邮箱"
 ```
 
-\*\*注：\*\*执行配置用户信息命令后，信息会被写入到C:/Users/计算机名/.gitconfig文件中，一次配置永久生效。
+**注：**执行配置用户信息命令后，信息会被写入到C:/Users/计算机名/.gitconfig文件中，一次配置永久生效。
+
+**删除全局配置信息**
+
+```
+git config --global --unset user.name
+```
 
 ### Git操作基础步骤演示
 
@@ -106,45 +118,94 @@ git commit -m "提交信息"
 
 ## Git常用命令
 
-**init**：初始化Git工具
+#### init
+
+初始化Git工具
 
 ```
 git init
 ```
 
-**add**：将工作区的内容提交到暂存区
+#### add
+
+将工作区的内容提交到暂存区
 
 ```
 git add . / 文件名(带后缀)
 ```
 
-**commit**：将暂存区的内容提交到本地仓库
+#### commit
+
+将暂存区的内容提交到本地仓库
 
 ```
 git commit -m "提交信息"
 ```
 
-**status**：查询提交内容的状态，即内容是否在暂存区
+#### status
+
+显示本次操作工作区和暂存区的状态
 
 ```
-git status
+git status [-s]
 ```
 
-**log**：查询历史提交记录信息（可以简版查询，详版查询，指定条数）
+-s，简短查询状态。
+
+#### reset
+
+回退指定提交版本
 
 ```
-git log [--oneline [-数字] ]
+git reset [--hard/--soft/--mixed]  指定版本号< HEAD ~(num) > | <commit ID> | HEAD^
 ```
 
-**reset**：回退指定提交版本
+--hard，缓存区和工作区都同步到你指定的版本；
+
+ --mixed，默认参数，缓存区同步到你指定的版本，保留工作区；
+
+--soft，保留缓存区和工作区；
+
+#### revert
+
+**版本回滚**
 
 ```
-git reset [--hard]  指定版本号
+git revert 指定版本号< HEAD ~(num) > | <commit ID> | HEAD^
 ```
 
-注：如果不写参数hard，则只会做版本回滚，工作区代码不变。
+**批量回滚**
 
-**reflog**：查看本地git操作历史记录
+```
+git revert older_commit^..newer_commit
+```
+
+##### git reset 和 git revert 区别
+
+采用 git reset 会使 HEAD 指针往回移动，从而会失去之后的提交信息。
+采用 git revert 是把指定版本内容，生成一个新的 commit 版本，不影响 commit 版本之前及之后的提交，HEAD 指针是指向这个新的版本。
+
+#### log
+
+查询历史提交记录日志信息（可以简版查询，详版查询，指定条数）
+
+```
+gitlog [--oneline [-数字] ]
+```
+
+--oneline，显示最近5次日志。
+
+-数字，指定显示次数。
+
+**以GUI工具的形式展示日志**
+
+```
+git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset-%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+```
+
+#### reflog
+
+查看本地git操作历史记录
 
 ```
 git reflog
@@ -202,28 +263,66 @@ git commit –m “删除注释”
 git branch [-a/-r/-v]
 ```
 
-–r查看远程分支，–a查看本地和远程，–v查看各个分支最后一次提交信息
+–r，查看远程分支；–a，查看本地和远程；–v，查看各个分支最后一次提交信息。
 
 **创建本地分支**
 
 ```
-git branch 分支名
+git branch 分支名字(branch_name)
+```
+
+**删除本地分支**
+
+```
+git branch -d 分支名字(branch-name)
+```
+
+**重命名本地分支**
+
+```
+git branch -m 原分支名(oldbranch-name)  新分支名(newbranch-name)
 ```
 
 #### checkout
 
-**切换分支**
+**切换到指定分支**
 
 ```
-git checkout 分支名
+git checkout 分支名字(branch_name)
+```
+
+**创建新分支并切换到当前分支**
+
+```
+git checkout -b 分支名字(branch-name)
+```
+
+**创建一个空分支**
+
+```
+git checkout --orphan 分支名字(emptyBranchName) &&  git rm -rf .
 ```
 
 #### merge
 
-**合并分支**
+**指定分支合并到当前分支**
 
 ```
-git merge 分支名
+git merge [分支名字(branch-name)]
+```
+
+**注：**默认分支为主分支master.
+
+**合并分支时生成一个新的commit记录**
+
+```
+git merge --no-ff -m "提交信息"  分支名字(branch-name)
+```
+
+**查看那些分支没有合并到当前分支**
+
+```
+git branch --no-merged
 ```
 
 ### 分支冲突
@@ -274,13 +373,13 @@ gitee是一个基于git的代码托管平台，国产平台，服务器在国内
 
 4.克隆/同步远程仓库。
 
-\*\*案例一：\*\*将本地文件夹与远程仓库进行绑定
+\*\*案例一：\*\*将本地项目与远程仓库进行关联绑定
 
 ```
 1、初始化本地文件夹Git管理
 git init
 2、将本地文件夹与远程仓库绑定
-git remote add  远程仓库别名  远程仓库地址
+git remote add 仓库别名(默认是origin)  远程仓库地址(git-repo-url)
 3、拉取远程仓库内容和分支
 git pull 远程仓库地址
 4、本地创建一个与远程仓库同名的分支
@@ -302,7 +401,7 @@ git push 远程仓库地址
 
 ```
 1、将远程仓库克隆到本地
-git clone 远程仓库的地址
+git clone 远程仓库地址(git-repo-url)
 2、修改工作区文件
 3、将工作区文件提交到暂存区
 git add .
@@ -321,7 +420,7 @@ git push
 将远程仓库绑定到本地当前文件夹，并建立关联
 
 ```
-git remote add  远程仓库别名  远程仓库地址
+git remote add 仓库别名(默认是origin)  远程仓库地址(git-repo-url)
 ```
 
 **-v**
@@ -334,7 +433,7 @@ git remote -v
 
 #### push
 
-将本地内容推送到远程仓库
+**将本地内容推送到远程仓库**
 
 ```
 git push [远程地址] /  git push  [-u]  [远程仓库别名/分支名]
@@ -342,12 +441,26 @@ git push [远程地址] /  git push  [-u]  [远程仓库别名/分支名]
 
 \*\*注：\*\*如果使用-u参数，则第2次及以后可以直接使用git push把本地推送到远程仓库，但账号和密码必须正确。
 
+**删除远程仓库分支**
+
+```
+git push origin -d分支名字(branch-name)
+```
+
+**注：**删除分支前都需要先切换到其他分支才能进行删除操作
+
 #### clone
 
 克隆远程仓库
 
 ```
 git clone 远程仓库地址
+```
+
+克隆到指定文件夹下
+
+```
+git clone 远程仓库地址(git-repo-url)  指定文件夹名
 ```
 
 #### pull
@@ -359,6 +472,28 @@ git pull 远程仓库地址
 ```
 
 \*\*注：\*\*上(班)pull,下(班)push
+
+#### fetch
+
+**将某个远程主机的所有更新，全部拉取到本地**
+
+```
+git fetch origin && git merge origin/分支
+```
+
+**取回特定分支更新的数据**
+
+```
+git fetch origin 分支名 && git merge origin/分支
+```
+
+#### help
+
+显示Git的帮助信息
+
+```
+git help
+```
 
 ## SSH访问
 
