@@ -2,6 +2,8 @@
 
 * [大叔的随笔](README.md)
 * [免责声明](mian-ze-sheng-ming.md)
+* [Git的简单使用](git-de-jian-dan-shi-yong/README.md)
+  * [Git的使用](git-de-jian-dan-shi-yong/git-de-shi-yong.md)
 * [ECMAScript语法](ecmascript-yu-fa/README.md)
   * [ECMASCript](ecmascript-yu-fa/ecmascript.md)
 * [VUE3.0](vue3.0/README.md)
