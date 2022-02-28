@@ -44,11 +44,11 @@ Git 是一个开源的分布式版本控制系统，可以快速有效、高效�
 
 工作区：编写项目功能代码的工作区域。 暂存区：已完成的工作，临时存放的区域，等待被提交。 Git仓库区：最终存放的区域。
 
-**注：**git管理提交仓库，只能按顺序 工作区=>暂存区=>Git仓库区
+\*\*注：\*\*git管理提交仓库，只能按顺序 工作区=>暂存区=>Git仓库区
 
 ### Git工作流程
 
-![Git工作流程图](D:\GitHub work\engineer-notes\img\git_pic\Git工作流程图.png)
+![](../.gitbook/assets/Git工作流程图.png)
 
 ## Git下载
 
@@ -64,7 +64,7 @@ Git 是一个开源的分布式版本控制系统，可以快速有效、高效�
 git config [--local/--global/--system] --list
 ```
 
---local，查看本地仓库配置信息；--global，查看当前用户全局配置信息；--system，查看系统配置信息。
+\--local，查看本地仓库配置信息；--global，查看当前用户全局配置信息；--system，查看系统配置信息。
 
 **设置用户名**
 
@@ -78,7 +78,7 @@ git config --global user.name "你的名字或昵称"
 git config --global user.email "你的邮箱"
 ```
 
-**注：**执行配置用户信息命令后，信息会被写入到C:/Users/计算机名/.gitconfig文件中，一次配置永久生效。
+\*\*注：\*\*执行配置用户信息命令后，信息会被写入到C:/Users/计算机名/.gitconfig文件中，一次配置永久生效。
 
 **删除全局配置信息**
 
@@ -150,7 +150,7 @@ git commit -m "提交信息"
 git status [-s]
 ```
 
--s，简短查询状态。
+\-s，简短查询状态。
 
 #### reset
 
@@ -160,11 +160,11 @@ git status [-s]
 git reset [--hard/--soft/--mixed]  指定版本号< HEAD ~(num) > | <commit ID> | HEAD^
 ```
 
---hard，缓存区和工作区都同步到你指定的版本；
+\--hard，缓存区和工作区都同步到你指定的版本；
 
- --mixed，默认参数，缓存区同步到你指定的版本，保留工作区；
+\--mixed，默认参数，缓存区同步到你指定的版本，保留工作区；
 
---soft，保留缓存区和工作区；
+\--soft，保留缓存区和工作区；
 
 #### revert
 
@@ -180,10 +180,9 @@ git revert 指定版本号< HEAD ~(num) > | <commit ID> | HEAD^
 git revert older_commit^..newer_commit
 ```
 
-##### git reset 和 git revert 区别
+**git reset 和 git revert 区别**
 
-采用 git reset 会使 HEAD 指针往回移动，从而会失去之后的提交信息。
-采用 git revert 是把指定版本内容，生成一个新的 commit 版本，不影响 commit 版本之前及之后的提交，HEAD 指针是指向这个新的版本。
+采用 git reset 会使 HEAD 指针往回移动，从而会失去之后的提交信息。 采用 git revert 是把指定版本内容，生成一个新的 commit 版本，不影响 commit 版本之前及之后的提交，HEAD 指针是指向这个新的版本。
 
 #### log
 
@@ -193,9 +192,9 @@ git revert older_commit^..newer_commit
 gitlog [--oneline [-数字] ]
 ```
 
---oneline，显示最近5次日志。
+\--oneline，显示最近5次日志。
 
--数字，指定显示次数。
+\-数字，指定显示次数。
 
 **以GUI工具的形式展示日志**
 
@@ -311,7 +310,7 @@ git checkout --orphan 分支名字(emptyBranchName) &&  git rm -rf .
 git merge [分支名字(branch-name)]
 ```
 
-**注：**默认分支为主分支master.
+\*\*注：\*\*默认分支为主分支master.
 
 **合并分支时生成一个新的commit记录**
 
@@ -447,7 +446,7 @@ git push [远程地址] /  git push  [-u]  [远程仓库别名/分支名]
 git push origin -d分支名字(branch-name)
 ```
 
-**注：**删除分支前都需要先切换到其他分支才能进行删除操作
+\*\*注：\*\*删除分支前都需要先切换到其他分支才能进行删除操作
 
 #### clone
 
