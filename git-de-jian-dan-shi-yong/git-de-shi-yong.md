@@ -310,8 +310,6 @@ git checkout --orphan 分支名字(emptyBranchName) &&  git rm -rf .
 git merge [分支名字(branch-name)]
 ```
 
-\*\*注：\*\*默认分支为主分支master.
-
 **合并分支时生成一个新的commit记录**
 
 ```
