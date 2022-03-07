@@ -6,6 +6,8 @@
   * [Git的使用](git-de-jian-dan-shi-yong/git-de-shi-yong.md)
 * [ECMAScript语法](ecmascript-yu-fa/README.md)
   * [ECMASCript](ecmascript-yu-fa/ecmascript.md)
+* [Node基础知识](node-ji-chu-zhi-shi/README.md)
+  * [Page 1](node-ji-chu-zhi-shi/page-1.md)
 * [VUE3.0](vue3.0/README.md)
   * [VUE基础](vue3.0/vue-ji-chu.md)
 * [GitBook使用](gitbook-shi-yong/README.md)
