@@ -1,4 +1,4 @@
-# ECMASCript语法
+# ECMASCript
 
 ## ECMAScript简介
 
@@ -12,20 +12,20 @@
 
 ### 版本发展史
 
-| **年份** | **版本**               |
-| -------- | ---------------------- |
-| 1997     | ECMAScript 1.0         |
-| 1998     | ECMAScript 2.0         |
-| 1999     | ECMAScript 3.0         |
-| 2009/12  | ECMAScript 5.0         |
-| 2015/06  | ECMAScript 2015(ES6)   |
-| 2016/06  | ECMAScript 2016(ES7)   |
-| 2017/06  | ECMAScript 2017(ES8)   |
-| 2018/06  | ECMAScript 2018(ES9)   |
-| 2019/06  | ECMAScript 2019(ES10)  |
-| 2020/06  | ECMAScript 2020(ES11)  |
-| 2021/06  | ECMAScript 2021(ES12)  |
-| 2022/06  | ECMAScript  2022(ES13) |
+| **年份**  | **版本**                |
+| ------- | --------------------- |
+| 1997    | ECMAScript 1.0        |
+| 1998    | ECMAScript 2.0        |
+| 1999    | ECMAScript 3.0        |
+| 2009/12 | ECMAScript 5.0        |
+| 2015/06 | ECMAScript 2015(ES6)  |
+| 2016/06 | ECMAScript 2016(ES7)  |
+| 2017/06 | ECMAScript 2017(ES8)  |
+| 2018/06 | ECMAScript 2018(ES9)  |
+| 2019/06 | ECMAScript 2019(ES10) |
+| 2020/06 | ECMAScript 2020(ES11) |
+| 2021/06 | ECMAScript 2021(ES12) |
+| 2022/06 | ECMAScript 2022(ES13) |
 
 ## 变量与常量的声明
 
@@ -192,7 +192,7 @@ let arr=[1,2,4,2,3,5,7,8,4,3,65,8,9];
 
 #### 常用方法
 
-##### add
+**add**
 
 set数据结构中添加元素数据，返回set数据结构本身
 
@@ -213,7 +213,7 @@ s.add(function aa(){console.log("ssssaaa");});
 console.log(s);
 ```
 
-##### delete
+**delete**
 
 删除set数据结构中的某个元素数据，返回布尔类型，表示删除是否成功，仅支持基本数据类型。
 
@@ -231,7 +231,7 @@ s.delete(function aa(){console.log("ssssaaa");});
 s.delete({username:"aa"});
 ```
 
-##### has
+**has**
 
 判断某个元素数据是否存在于set数据结构中，返回布尔类型，表示数据结构中是否含有该元素，仅支持基本数据类型。
 
@@ -248,7 +248,7 @@ console.log(s.has(true));
 console.log(s.has({username:"aa"}));
 ```
 
-##### clear
+**clear**
 
 清空set数据结构中的数据，无返回值。
 
@@ -258,7 +258,7 @@ console.log(s.has({username:"aa"}));
 s.clear();
 ```
 
-##### forEach
+**forEach**
 
 循环遍历Set数据结构
 
@@ -280,7 +280,7 @@ s.forEach(function(item){
 });
 ```
 
-##### keys
+**keys**
 
 采用默认下标模式生成键名，将元素的值作为键值，返回键值对可遍历对象。
 
@@ -296,7 +296,7 @@ s.forEach(function(item){
 console.log(s.keys());
 ```
 
-##### values
+**values**
 
 采用默认下标模式生成键名，将元素的值作为键值，返回键值对可遍历对象。
 
@@ -312,7 +312,7 @@ console.log(s.keys());
 console.log(s.values()); 
 ```
 
-##### entries
+**entries**
 
 采用元素的值作为键名和键值，返回键值对可遍历对象。
 
@@ -330,7 +330,7 @@ console.log(s.entries());
 
 #### 常用属性
 
-##### size
+**size**
 
 获取set数据结构的长度
 
@@ -358,7 +358,7 @@ let m=new Map([["username","admin"],[function a(){console.log("ssssss");},3],[tr
 
 #### 常用方法
 
-##### set
+**set**
 
 向map数据结构中添加键值对数据
 
@@ -379,7 +379,7 @@ m.set(function (){console.log("ddddd");},"xaaaaa");
 console.log(m);
 ```
 
-##### get
+**get**
 
 获取map数据结构中参数键名的数据，只支持键名为基本数据类型。
 
@@ -397,7 +397,7 @@ m.get(undefined)();
 console.log(m.get(function (){console.log("ddddd");}));
 ```
 
-##### delete
+**delete**
 
 删除map数据结构中的参数键名的数据，只支持键名为基本数据类型。
 
@@ -415,7 +415,7 @@ m.delete(undefined);
         m.delete(true);
 ```
 
-##### has
+**has**
 
 判断参数键名是否存在于map数据结构中,返回布尔类型，只支持基本数据类型。
 
@@ -432,7 +432,7 @@ console.log(m.has(undefined));
 console.log(m.has(function (){console.log("ddddd");})); 
 ```
 
-##### clear
+**clear**
 
 清空map数据结构中的数据
 
@@ -442,7 +442,7 @@ console.log(m.has(function (){console.log("ddddd");}));
 m.clear();
 ```
 
-##### forEach
+**forEach**
 
 循环遍历Map数据结构
 
@@ -464,7 +464,7 @@ m.clear();
         });
 ```
 
-##### keys
+**keys**
 
 将Map数据结构中的键名转换为可遍历的类对象。
 
@@ -480,7 +480,7 @@ m.clear();
 console.log(m.keys());
 ```
 
-##### values
+**values**
 
 将Map数据结构中的键值转换为可遍历的类对象。
 
@@ -496,9 +496,9 @@ console.log(m.keys());
 console.log(m.values());
 ```
 
-##### entries
+**entries**
 
-将Map数据结构转换为可遍历的类对象(类似二维数组的类对象)  。
+将Map数据结构转换为可遍历的类对象(类似二维数组的类对象) 。
 
 **语法：**
 
@@ -517,7 +517,7 @@ console.log(m.values());
 
 #### 常用属性
 
-##### size
+**size**
 
 获取Map数据结构的长度
 
@@ -558,7 +558,7 @@ function f(b,...a){
 f(1,2,4,6,7);
 ```
 
-注：必须出现在形参的最后 
+注：必须出现在形参的最后
 
 #### spread扩展运算符：
 
@@ -888,7 +888,7 @@ Array.from(类数组)
 
 查询数组中是否含有参数元素，返回值是布尔类型。
 
-**注：**此方法只支持基本数据类型
+\*\*注：\*\*此方法只支持基本数据类型
 
 **语法：**
 
@@ -930,7 +930,7 @@ Array.from(类数组)
 
 #### 属性简写
 
-##### 简写规则
+**简写规则**
 
 1.键名的“”可以省略。
 
@@ -1099,8 +1099,10 @@ Object. fromEntries( [[key,value], [key,value]] )
 
 **案例：**
 
-        let arr=[["name","admin"],["pwd","123"]];
-        console.log(Object.fromEntries(arr));
+```
+    let arr=[["name","admin"],["pwd","123"]];
+    console.log(Object.fromEntries(arr));
+```
 
 ### JSON对象
 
@@ -1174,7 +1176,7 @@ for(let index in arr){
 }
 ```
 
-### for [await]…of
+### for \[await]…of
 
 循环遍历对象需要迭代的数据，即键值(value)，可遍历任意可迭代对象，用于解决 for..in 和 forEach() 无法遍历某些对象问题。
 
@@ -1193,21 +1195,21 @@ for await(let item of asyncObj){
 
 (1)Array
 
-(2)arguments 
+(2)arguments
 
 (3)Set数据结构
 
 (4)Map数据结构
 
-(5)String 
+(5)String
 
-(6)NodeList对象 
+(6)NodeList对象
 
 (7)HTMLCollection 对象
 
 (8)TypedArray
 
-**注：**for...of不能直接遍历对象，可通过对象的扩展方法遍历对象。
+\*\*注：\*\*for...of不能直接遍历对象，可通过对象的扩展方法遍历对象。
 
 #### 案例
 
@@ -1234,37 +1236,37 @@ let [变量名,变量名,变量名,变量名]=[值,值,值,值];
 
 #### 规则
 
-先找形式[],在找"，"，进行一对一匹配赋值。
+先找形式\[],在找"，"，进行一对一匹配赋值。
 
 #### 解构的形式
 
-##### 完全解构
+**完全解构**
 
 ```
 let [a,b,c,d]=[1,2,3,5];
 ```
 
-##### 不完全解构
+**不完全解构**
 
-###### 值比变量多
+**值比变量多**
 
 ```
 let [a,b]=[1,2,3,5,6];
 ```
 
-###### 变量比值多
+**变量比值多**
 
 ```
 let [a,b,c]=[1,2];
 ```
 
-###### 缺省方式
+**缺省方式**
 
 ```
 let [,,a,]=[1,2,3,5,6];
 ```
 
-##### 嵌套解构
+**嵌套解构**
 
 ```
 let [,,[,[a]]]=[,,[,[1]]];
@@ -1298,7 +1300,7 @@ let [a=1,b]=[null,null];
 
 #### 应用场景
 
-##### 数组值的交换
+**数组值的交换**
 
 ```
 let a = 1;
@@ -1310,13 +1312,13 @@ let b = 2;
 
 #### 语法
 
-##### 语法1
+**语法1**
 
 ```
 let {键名:变量名,键名:变量名,键名:变量名}={键名:值,键名:值,键名:值};
 ```
 
-##### 语法2
+**语法2**
 
 ```
 let {变量名,变量名,变量名}={键名:值,键名:值,键名:值};
@@ -1334,27 +1336,27 @@ let {变量名,变量名,变量名}={键名:值,键名:值,键名:值};
 
 #### 解构形式
 
-##### 完全解构
+**完全解构**
 
 ```
 let {username,pwd}={username:"admin",pwd:"123456"};
 ```
 
-##### 不完全解构
+**不完全解构**
 
-###### 值比变量多
+**值比变量多**
 
 ```
 let {username}={username:"admin",pwd:"123456"};
 ```
 
-##### 变量比值多
+**变量比值多**
 
 ```
 let {username,ins}={username:"admin",pwd:"123456"};
 ```
 
-##### 复合型解构
+**复合型解构**
 
 ```
 let {ins:{c:[,,,arr]}}={username:"admin",ins:{"a":"read","b":"write","c":[1,2,4,5,67]}};
@@ -1426,7 +1428,7 @@ f({username:"admin"});
 funciton 函数名(变量=默认值,变量=默认值){}
 ```
 
-**注：**函数默认值如果需要生效必须在调用的时候，设置实参为undefined
+\*\*注：\*\*函数默认值如果需要生效必须在调用的时候，设置实参为undefined
 
 案例：
 
@@ -1448,17 +1450,17 @@ setUser(“admin”,”123”)
 
 ES6 允许使用“箭头”（=>）定义函数。简化回调函数和匿名函数的写法。
 
-**注：**箭头函数必须先执行后调。
+\*\*注：\*\*箭头函数必须先执行后调。
 
 #### 箭头函数语法
 
-##### 匿名函数简化
+**匿名函数简化**
 
 ```
 let 函数名=()=>{};
 ```
 
-##### 回调函数简化
+**回调函数简化**
 
 ```
 函数名(()=>{})
@@ -1466,13 +1468,13 @@ let 函数名=()=>{};
 
 #### 箭头函数的参数
 
-##### (1)无参数
+**(1)无参数**
 
 ```
 let a=()=>{console.log("aaaa");};
 ```
 
-##### (2)一个参数
+**(2)一个参数**
 
 变量名=参数=>{函数体}，即，当箭头函数的形参有且只有一个的时候，()可以省略。
 
@@ -1480,7 +1482,7 @@ let a=()=>{console.log("aaaa");};
 let c=m=>{console.log(m);};
 ```
 
-##### (3)多个参数 
+**(3)多个参数**
 
 变量名=(参数1，参数2)=>{函数体}
 
@@ -1488,7 +1490,7 @@ let c=m=>{console.log(m);};
 let b=(m,n)=>{console.log(m+n);};
 ```
 
-##### (4)剩余参数
+**(4)剩余参数**
 
 ```
 let f= (...a)=>{
@@ -1496,11 +1498,11 @@ let f= (...a)=>{
 }
 ```
 
-**注：**不能使用arguments
+\*\*注：\*\*不能使用arguments
 
 #### 箭头函数的返回值
 
-##### 1、完整写法的返回值形式 
+**1、完整写法的返回值形式**
 
 ```
 let e=(m)=>{
@@ -1508,7 +1510,7 @@ let e=(m)=>{
 };
 ```
 
-##### 2、一行代码
+**2、一行代码**
 
 当箭头函数的代码体有且只有一条语句的时候，{}可以省略。
 
@@ -1516,7 +1518,7 @@ let e=(m)=>{
 let d=m=>console.log(m);
 ```
 
-##### 3、return关键词
+**3、return关键词**
 
 只有一行代码的返回值， return可以省略
 
@@ -1524,7 +1526,7 @@ let d=m=>console.log(m);
 let e=m=>m;
 ```
 
-##### 4、返回对象
+**4、返回对象**
 
 ```
 let g=()=>({username:"admin",pwd:"123456"});
@@ -1543,7 +1545,7 @@ let hh=new h();
 
 箭头函数中，this不会指向当前环境，而是指向定义时所在的环境。
 
-##### 特例语法
+**特例语法**
 
 (1)箭头函数直接调用打印this
 
@@ -1573,7 +1575,7 @@ let hh=new h();
     </script>
 ```
 
-(3)使用call尝试改变箭头函数的this指向 
+(3)使用call尝试改变箭头函数的this指向
 
 ```
         let c=function(){
@@ -1624,7 +1626,7 @@ function P(){
         let p=new P();
         p.aa();//P
         p.bb();//P
-        p.cc()();//Window 
+        p.cc()();//Window 
         p.dd()();//P
         p.ee()();//Window
         p.ff()();//P
@@ -1691,7 +1693,7 @@ Promise对象，异步编程的一种解决方案。也称之为一个容器，�
 
 #### 语法
 
-##### 语法1
+**语法1**
 
 ```
 new Promise( (resolve,reject)=>{
@@ -1699,7 +1701,7 @@ new Promise( (resolve,reject)=>{
 } );
 ```
 
-##### 语法2
+**语法2**
 
 ```
 Promise.resolve/reject();
@@ -1721,12 +1723,11 @@ pending（进行中）、fulfilled（已成功）和 rejected（已失败）。
 
 #### 特点
 
-1）对象的状态不受外界影响。
-2）一旦状态改变，就不会再变，即Promise的状态不可逆。
+1）对象的状态不受外界影响。 2）一旦状态改变，就不会再变，即Promise的状态不可逆。
 
 #### Promise对象基本流程
 
-![Promise对象基本流程](E:\授课内容\中公\node课程\笔记\img\Promise对象基本流程.png)
+![](../.gitbook/assets/Promise对象基本流程.png)
 
 #### 常用方法
 
@@ -1746,7 +1747,7 @@ let p1=Promise.resolve("我是成功1");
 let p3=Promise.reject("我是失败1");
 ```
 
-##### Promise.then(参数1callback，参数2callback)
+**Promise.then(参数1callback，参数2callback)**
 
 then方法接受两个回调函数作为参数。
 
@@ -1754,7 +1755,7 @@ then方法接受两个回调函数作为参数。
 
 第二个回调函数是Promise对象的状态变为rejected时调用,获取失败状态的值/代码运行时错误/获取自定义错误（注：不推荐使用此方法获取）。其中，第二个回调函数可以省略。
 
-###### 语法
+**语法**
 
 ```
 promise对象.then( (结果)=>{
@@ -1764,7 +1765,7 @@ promise对象.then( (结果)=>{
 }]);
 ```
 
-###### 案例
+**案例**
 
 ```
 p.then(data=>{
@@ -1774,11 +1775,11 @@ p.then(data=>{
 });
 ```
 
-##### Promise.catch()
+**Promise.catch()**
 
 获取失败状态的值/代码运行时错误/获取自定义错误（推荐使用）
 
-###### 语法
+**语法**
 
 ```
 promise对象.catch( (异常)=>{
@@ -1786,7 +1787,7 @@ promise对象.catch( (异常)=>{
 });
 ```
 
-###### 案例
+**案例**
 
 ```
 p.catch(err=>{
@@ -1810,21 +1811,19 @@ p.then(data=>{
 });
 ```
 
-##### Promise.all([p1,p2,p3,....pn])
+**Promise.all(\[p1,p2,p3,....pn])**
 
 同时执行多个 Promise 实例，并生成一个新的 Promise 实例。
 
-###### 语法
+**语法**
 
 ```
 Promise.all( [ pro1,pro2,... ] );
 ```
 
-**注**
-1）参数实例中必须全部都是fulfilled时，Promise.all()的状态才是fulfilled，否则状态就是rejected；
-2）参数实例中如果使用catch捕获的错误或者异常，则不会触发Promise.all()的catch方法。
+**注** 1）参数实例中必须全部都是fulfilled时，Promise.all()的状态才是fulfilled，否则状态就是rejected； 2）参数实例中如果使用catch捕获的错误或者异常，则不会触发Promise.all()的catch方法。
 
-###### 案例
+**案例**
 
 ```
 let p1=Promise.resolve("我是成功1");
@@ -1847,7 +1846,7 @@ Promise.all([p1,p2,p4,p5]).then(data=>{
 
 then的回调函数中还可以有返回值，可以是promise对象（也可以是其它数据），都可以使用链式操作再进行调用下一个then函数进行接收结果。
 
-##### 案例
+**案例**
 
 ```
 let p=new Promise(resolve=>{
@@ -1861,7 +1860,7 @@ let p1=p.then(data=>{
 });
 ```
 
-**注：**jQuery对象就是一个典型的链式操作对象。
+\*\*注：\*\*jQuery对象就是一个典型的链式操作对象。
 
 #### 回调地狱的优化
 
@@ -1879,8 +1878,7 @@ let p1=p.then(data=>{
 
 ## async函数
 
-ES2017 标准将原有的async 函数，进行了升级，它是一个关键字，被async修饰的函数称为async函数。
-async修饰的函数，默认会将返回值封装为一个Promise对象。
+ES2017 标准将原有的async 函数，进行了升级，它是一个关键字，被async修饰的函数称为async函数。 async修饰的函数，默认会将返回值封装为一个Promise对象。
 
 ### 语法
 
@@ -1936,15 +1934,13 @@ ff();
 
 ### 面向对象编程：
 
-面向对象编程其本质是以，建立模型体现出来的抽象思维过程和面向对象的一些方法。模型是用来反映现实世界中事物特征。方法就是模型所需要的行为动作。
-在面向对象编程中，最常见的表现就是基于类(Class)来表现的，每一个对象实例都有具体的类，即对象的类型。
+面向对象编程其本质是以，建立模型体现出来的抽象思维过程和面向对象的一些方法。模型是用来反映现实世界中事物特征。方法就是模型所需要的行为动作。 在面向对象编程中，最常见的表现就是基于类(Class)来表现的，每一个对象实例都有具体的类，即对象的类型。
 
-**面向对象特点：**封装，继承，多态，抽象。
+\*\*面向对象特点：\*\*封装，继承，多态，抽象。
 
-### 类和对象： 
+### 类和对象：
 
-在面向对象编程过程中，有两个重要组成部分：类 和 对象。
-类和对象的关系：用类去创建一个对象。
+在面向对象编程过程中，有两个重要组成部分：类 和 对象。 类和对象的关系：用类去创建一个对象。
 
 #### 类的概念：
 
@@ -1956,17 +1952,17 @@ ff();
 
 注：开发中，先有类，再有对象。
 
-#### 类的定义 
+#### 类的定义
 
 定义类名要满足标识符命名规则，同时遵循大驼峰命名习惯。
 
-##### 语法
+**语法**
 
 ```
 class 类名{}
 ```
 
-##### 实例化
+**实例化**
 
 创建类的对象引用。
 
@@ -1976,11 +1972,11 @@ let 变量名=new 类名() / new 类名
 
 #### 类的方法
 
-##### 构造方法(constructor)
+**构造方法(constructor)**
 
 构造方法/构造函数/构造器，初始化对象。在创建一个对象时默认被调用，不需要手动调用，同时可以定义形参。
 
-###### 语法
+**语法**
 
 ```
 class 类名{
@@ -1988,17 +1984,17 @@ class 类名{
 }
 ```
 
-###### 调用
+**调用**
 
 ```
 let 变量(类对象引用)=new 类名();//实例化自动调用
 ```
 
-##### 成员方法
+**成员方法**
 
 成员方法，通过类的实例化对象引用来调用，每个实例化对象引用的成员方法是相对独立，互不影响的。
 
-###### 语法
+**语法**
 
 ```
 class 类名{
@@ -2006,7 +2002,7 @@ class 类名{
 }
 ```
 
-###### 调用
+**调用**
 
 类本身调用成员方法
 
@@ -2020,11 +2016,11 @@ this.方法名();
 类对象引用.方法名();
 ```
 
-##### 静态方法
+**静态方法**
 
 静态方法，通过类本身来调用，即绑定在class.propName上。
 
-###### 语法
+**语法**
 
 ```
 class 类名{
@@ -2032,7 +2028,7 @@ class 类名{
 }
 ```
 
-###### 调用
+**调用**
 
 类的实例和类中成员方法的调用
 
@@ -2046,7 +2042,7 @@ class 类名{
 this.方法名();
 ```
 
-##### 案例
+**案例**
 
 ```
 class Friut{
@@ -2070,11 +2066,11 @@ Friut.pi();
 
 #### 类的属性
 
-##### 成员属性
+**成员属性**
 
 成员属性，通过类的实例化对象引用来调用，每个实例化对象引用的成员方法是相对独立，互不影响的。
 
-###### 语法
+**语法**
 
 ```
 class 类名{
@@ -2088,7 +2084,7 @@ class 类名{
 }
 ```
 
-###### 调用
+**调用**
 
 类本身调用成员属性
 
@@ -2102,11 +2098,11 @@ this.变量名;
 类对象引用.属性名;
 ```
 
-###### 静态属性
+**静态属性**
 
 静态属性，通过类本身来调用，即绑定在class.propName上。
 
-###### 语法
+**语法**
 
 ```
 class 类名{
@@ -2124,7 +2120,7 @@ class 类名{
 }
 ```
 
-###### 调用
+**调用**
 
 类的实例和类中成员方法的调用
 
@@ -2138,7 +2134,7 @@ class 类名{
 this.变量名;
 ```
 
-###### 案例
+**案例**
 
 ```
 class Fruit{
@@ -2168,7 +2164,7 @@ console.log(Fruit.hu);
 
 #### 类的属性和方法的使用
 
-##### 构造方法和成员方法
+**构造方法和成员方法**
 
 **调用成员方法/成员属性**
 
@@ -2182,7 +2178,7 @@ this.方法名()/属性名
 类名.方法名()/属性名
 ```
 
-##### 静态方法
+**静态方法**
 
 **调用静态方法/属性**
 
@@ -2190,7 +2186,7 @@ this.方法名()/属性名
 this.方法名()/属性名  / 类名.方法名()/属性名
 ```
 
-**注：**静态方法中只能使用静态方法和静态属性。
+\*\*注：\*\*静态方法中只能使用静态方法和静态属性。
 
 #### 案例
 
@@ -2228,7 +2224,7 @@ Fruit.pi();
 
 如果某个属性/方法, 可以被公共使用, 修饰为静态
 
-### 类的继承： 
+### 类的继承：
 
 面向对象的继承指的是多个类之间的所属关系，即子类默认继承父类所有的特性，体现了对属性和方法的复用性的提升。继承中的父类和子类：被继承的类称为父类，而继承父类的类称为子类。
 
@@ -2236,17 +2232,16 @@ ES中的继承是完全继承，但可以多态。
 
 #### 继承的优点：
 
-(1)提高了代码的复用性。
-(2)减少了代码量。
+(1)提高了代码的复用性。 (2)减少了代码量。
 
-##### 语法
+**语法**
 
 ```
 class 父类{}
 class 子类 extends 父类 {}
 ```
 
-##### 调用
+**调用**
 
 构造方法中调用父类的构造方法
 
@@ -2279,7 +2274,7 @@ super.方法名()
 
 注：静态方法中只能调用父类的静态属性和静态方法，不能调用成员属性和方法。
 
-##### 案例
+**案例**
 
 ```
 class Fruit{
@@ -2326,7 +2321,7 @@ Apple.pi();
 
 ### 模块化步骤
 
-(1)使用规范暴露数据 
+(1)使用规范暴露数据
 
 (2)使用规范引入模块
 
@@ -2336,27 +2331,27 @@ Apple.pi();
 
 #### export(抛出)
 
-##### 单数据抛出(默认抛出)
+**单数据抛出(默认抛出)**
 
 只暴露单一数据，且在引入的时候无需{}
 
-###### 语法
+**语法**
 
 ```
 export default 数据
 ```
 
-###### 案例
+**案例**
 
 ```
 export default {pwd,getUsername};
 ```
 
-##### 多数据抛出
+**多数据抛出**
 
 暴露多个数据，支持暴露变量、函数和类，名称和暴露的名称一致
 
-##### 语法
+**语法**
 
 ```
 export let 变量名=值;
@@ -2365,7 +2360,7 @@ export {变量名,方法名}
 export {变量名 as 别名,变量名 as 别名}
 ```
 
-##### 案例
+**案例**
 
 ```
 export let username="adming";//直接抛出变量
@@ -2387,31 +2382,31 @@ export{//隐式抛出
 
 导入export关键次抛出的数据接口。
 
-##### 单一抛出数据
+**单一抛出数据**
 
-###### 语法
+**语法**
 
 ```
 import  变量  文件相对路径(带文件后缀名)
 ```
 
-###### 案例
+**案例**
 
 ```
 import a from "./2.js";
 console.log(a.pwd);
 ```
 
-##### 多数据抛出
+**多数据抛出**
 
-###### 语法
+**语法**
 
 ```
 import { 变量 } 文件相对路径(带文件后缀名)
 import { 变量 as  新变量名 } 文件相对路径(带文件后缀名)
 ```
 
-###### 案例
+**案例**
 
 ```
 import {username as uname,f,pp,getUsername} from "./2.js";//直接抛出采用解构模式引入。 
@@ -2419,11 +2414,11 @@ let username="adminddd";
 console.log(username,uname,f(),pp,getUsername());
 ```
 
-**注：**import命令输入的变量都是只读的，不允许在加载模块的脚本里面，更改其的值。但支持按需加载
+\*\*注：\*\*import命令输入的变量都是只读的，不允许在加载模块的脚本里面，更改其的值。但支持按需加载
 
 #### 浏览器引入
 
-##### 语法
+**语法**
 
 ```
 <script src="文件相对路径(带文件后缀名)" type="module"></script>
@@ -2439,14 +2434,13 @@ console.log(username,uname,f(),pp,getUsername());
 
 iterator是 ES6 引入的一种新的遍历机制，它提供了一个统一的接口，它的作用是使各种数据结构可被便捷的访问，它是通过Symbol.iterator 的方法来实现。
 
-### iterator迭代过程： 
+### iterator迭代过程：
 
-1、通过 Symbol.iterator 创建一个迭代器，指向当前数据结构的起始位置
-2、通过 next 方法进行向下迭代指向下一个位置， next 方法会返回当前位置的对象，对象包含了 value 和 done 两个属性， value 是当前属性的值， done 用于判断是否遍历结束，当done的值为true时代表结束
+1、通过 Symbol.iterator 创建一个迭代器，指向当前数据结构的起始位置 2、通过 next 方法进行向下迭代指向下一个位置， next 方法会返回当前位置的对象，对象包含了 value 和 done 两个属性， value 是当前属性的值， done 用于判断是否遍历结束，当done的值为true时代表结束
 
 #### 遍历过程流程图：
 
-![iterator遍历过程](E:\授课内容\中公\node课程\笔记\img\iterator遍历过程.png)
+![](../.gitbook/assets/iterator遍历过程.png)
 
 #### iterator遍历器使用案例
 
@@ -2461,21 +2455,21 @@ for(let item of it){
 console.log(it.next()) // { value: undefined, done: true }
 
 为对象部署Symbol.iterator
-let obj = {username:'rypy',age:20};
-obj[Symbol.iterator] = ()=>{
-    let data = Object.values( obj )
-    let index = 0
-    return {
-        next:()=>{
-            return { value:data[index++],done: index > data.length ? true : false } }
-    }
+let obj = {username:'rypy',age:20};
+obj[Symbol.iterator] = ()=>{
+    let data = Object.values( obj )
+    let index = 0
+    return {
+        next:()=>{
+            return { value:data[index++],done: index > data.length ? true : false } }
+    }
 }
-// let nextObj = obj[Symbol.iterator]()
-// console.log( nextObj.next() )
-// console.log( nextObj.next() )
-// console.log( nextObj.next() )
-for(let item of obj){
-    console.log(item);
+// let nextObj = obj[Symbol.iterator]()
+// console.log( nextObj.next() )
+// console.log( nextObj.next() )
+// console.log( nextObj.next() )
+for(let item of obj){
+    console.log(item);
 }
 ```
 
