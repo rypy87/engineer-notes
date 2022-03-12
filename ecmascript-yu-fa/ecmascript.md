@@ -1632,6 +1632,32 @@ function P(){
         p.ff()();//P
 ```
 
+## 新增语法块
+
+#### try...catch...finally块
+
+捕获并处理可预知类错误/异常的代码块关键词。
+
+**语法：**
+
+```
+try{}catch[(err)]{}[finally{}]
+```
+
+**案例：**
+
+```
+    try{
+        console.log(age);
+        let age=20;
+    }catch(err){
+        console.log(err.message);
+    }finally{
+        console.log("我的块是永久执行");
+    }
+    console.log("dddd");
+```
+
 ## Promise与异步
 
 ### 同步与异步
