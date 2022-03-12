@@ -18,7 +18,7 @@
 
 **案例：**
 
-![](../.gitbook/assets/zyym1.jpg)
+![](../img/zyym/zyym1.jpg)
 
 ### 3、设置GitBook端域名跳转
 
@@ -26,7 +26,7 @@
 
 **案例：**
 
-![](../.gitbook/assets/zyym2.jpg) ![](../.gitbook/assets/zyym3.jpg) ![](../.gitbook/assets/zyym4.jpg)
+![](../img/zyym/zyym2.jpg) ![](../img/zyym/zyym3.jpg) ![](../img/zyym/zyym4.jpg)
 
 ## 常见问题
 
