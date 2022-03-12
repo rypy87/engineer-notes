@@ -846,39 +846,7 @@ module.exports与exports区别：
 定义模块
 
 ```
-//定义模块
-//定义模块，可以是变量，对象，函数/方法，类，类的实例
-let username="admin";
-let user={username,pwd:123456};
-function getPwd() {
-    return "sddfsdf";
-}
-//抛出模块
-//暴露抛出
-// module.exports=username;
-//隐式抛出
-//变量形式抛出
-// module.exports.aa=user;
-//对象形式抛出(推荐)
-module.exports={
-    uu:username,
-    user,
-    pp:getPwd
-}
-//exports只能以变量的形式抛出
-// exports.aaa={
-//     username,
-//     user
-// }
-// exports.bbb={
-//     getPwd
-// }
-// exports.cccc={
-// }
-// module.exports={
-//     aaa:{username,user},
-//     bbb:{getPwd}
-// }
+//定义模块//定义模块，可以是变量，对象，函数/方法，类，类的实例let username="admin";let user={username,pwd:123456};function getPwd() {    return "sddfsdf";}//抛出模块//暴露抛出// module.exports=username;//隐式抛出//变量形式抛出// module.exports.aa=user;//对象形式抛出(推荐)module.exports={    uu:username,    user,    pp:getPwd}//exports只能以变量的形式抛出// exports.aaa={//     username,//     user// }// exports.bbb={//     getPwd// }// exports.cccc={// }// module.exports={//     aaa:{username,user},//     bbb:{getPwd}// }
 ```
 
 引入模块
