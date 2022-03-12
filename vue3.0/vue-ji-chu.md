@@ -938,7 +938,7 @@ VUE2.0，包含8个生命周期钩子函数，beforeCreate(组件实例刚刚被
 
 #### 函数图解
 
-![](../img/vuejc/vue-smzq2.png)
+![](../.gitbook/assets/vue-smzq2.png)
 
 **例**
 
@@ -1024,7 +1024,7 @@ VUE3.0，包含8个生命周期钩子函数，beforeCreate(组件实例刚刚被
 
 #### 函数图解
 
-![](../img/vuejc/vue-smzq3.png)
+![](../.gitbook/assets/vue-smzq3.png)
 
 **案例**
 
@@ -2372,7 +2372,7 @@ export default {
 
 #### 综合案例
 
-![](../img/vuejc/组件通信1.png)
+![](../.gitbook/assets/组件通信1.png)
 
 **父组件**
 
@@ -2696,7 +2696,7 @@ h3{
 
 匿名插槽会将父组件传递的所有内容/模板/组件都显示在插槽区。
 
-![slots.dbdaf1e8](../img/vuejc/slots.dbdaf1e8.png)
+![slots.dbdaf1e8](../.gitbook/assets/slots.dbdaf1e8.png)
 
 #### 语法：
 
