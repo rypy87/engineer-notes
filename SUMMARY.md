@@ -10,6 +10,7 @@
   * [Node基础](node-ji-chu-zhi-shi/node-ji-chu-zhi-shi-api.md)
 * [Express框架基础](express-kuang-jia-ji-chu/README.md)
   * [Express基础](express-kuang-jia-ji-chu/express-ji-chu.md)
+* [MySQL数据库](mysql-shu-ju-ku.md)
 * [VUE3.0](vue3.0/README.md)
   * [VUE基础](vue3.0/vue-ji-chu.md)
 * [GitBook使用](gitbook-shi-yong/README.md)
