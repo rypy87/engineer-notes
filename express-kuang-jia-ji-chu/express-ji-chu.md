@@ -36,7 +36,14 @@ npm i express
 (4)使用listen方法开启一个3000端口
 
 ```
-
+const express=require("express");
+const app=express();//注：实例化不需要new关键词
+app.get("/",(req,res)=>{
+    res.end("Hello,Express!");
+});
+app.listen(1234,"192.168.1.53",()=>{
+    console.log("服务器已启动！");
+});
 ```
 
 ### 应用对象(Application)
@@ -86,13 +93,31 @@ app.post(‘路由', (req,res)=>{ 处理函数 })
 ##### 服务器端代码
 
 ```
-
+const express=require("express");
+const app=express();
+//使用Express相应请求的规则：
+//当请求方式与响应方法匹配，且路由的名字匹配，才会执行响应方法的回调函数。
+app.get("/",(req,res)=>{
+    res.send("我是首页路由!");
+});
+app.get("/a",(req,res)=>{
+    res.send("我是a路由！");
+});
+app.get("/b",(req,res)=>{
+    res.send("我是b路由！");
+});
+app.post("/c",(req,res)=>{
+    res.send("我是post的c");
+});
+app.listen(1234);
 ```
 
 ##### 浏览器端代码
 
 ```
-   
+    <form action="http://192.168.1.53:1234/c" method="posts">
+        <input type="submit" value="提交">
+    </form>   
 ```
 
 ### 响应对象(response)
@@ -146,7 +171,37 @@ res.status(资源类型)
 #### 案例：
 
 ```
-
+const express=require('express');
+const path=require("path");
+const app=express();
+app.get('/',(req,res)=>{
+    res.send({status:200,msg:"提示"});
+});
+app.get("/",(req,res)=>{
+    res.sendFile(path.join(__dirname,"./public/index.html"));
+});
+app.get("/css/index.css",(req,res)=>{
+    res.sendFile(path.join(__dirname,"./public/css/index.css"));
+});
+app.get("/img/123.jpg",(req,res)=>{
+    res.sendFile(path.join(__dirname,"./public/img/123.jpg"));
+});
+app.get("/video/123.mp4",(req,res)=>{
+    res.sendFile(path.join(__dirname,"./public/video/123.mp4"));
+});
+//路由是由上到下，从左到右依次匹配，用户都是匹配第一个满足条件的响应。
+app.get("/a",(req,res)=>{
+    res.send("我是第一个aaaaaa");
+});
+app.get("/a",(req,res)=>{
+    res.status(500);
+    res.send("我是第二个a");
+});
+app.get("/b",(req,res)=>{
+    res.type("text/plugin");
+    res.send(`<h1>我是憨憨!</h1>`);
+});
+app.listen(1234);
 ```
 
 ### 请求对象(request)
@@ -162,17 +217,31 @@ res.status(资源类型)
 **案例**
 
 ```
-
+app.get("/a",(req,res)=>{
+    res.send(req.query);
+});
 ```
 
 ##### req.params
 
 动态路由(冒号传参)，以动态路由的形式传递参数。
 
+###### 动态路由连字符："."，"-"
+
+冒号传参的连字符，可以连接多个参数，只要形式对应即可。
+
 **案例：**
 
 ```
-
+app.get("/b/:username",(req,res)=>{
+    res.send(req.params);
+});
+app.get("/b/:username/:pwd",(req,res)=>{
+    res.send(req.params);
+});
+app.get("/b/:username-:pwd",(req,res)=>{
+    res.send(req.params);
+});
 ```
 
 ##### req.body
@@ -208,7 +277,14 @@ npm i nodemon -g
 **案例：**文件语法
 
 ```
+###
+GET http://192.168.1.53:1234/
 
+###
+GET http://192.168.1.53:1234/a?username=admin
+
+###
+POST http://192.168.1.53:1234/b
 ```
 
 ## 四、Express路由
@@ -245,7 +321,58 @@ Express支持Http请求方式的方法
 **案例**
 
 ```
+const express=require("express");
+const app=express();
+app.put("/a",(req,res)=>{
+    res.send('我是put响应');
+});
+app.delete("/b",(req,res)=>{
+    res.send("我是delete响应");
+});
+app.patch("/a",(req,res)=>{
+    res.send('我是patch');
+});
+app.listen(1234,'192.168.1.53');
+```
 
+### 路由的通用响应方法
+
+#### 基本语法
+
+```
+引用.all(路由,callbakck)
+```
+
+#### 案例
+
+```
+app.all("/aaa",(req,res)=>{
+    res.send("我是all");
+});
+//通常实现404问题，放置在所有路由的最后面。
+app.all("/*",(req,res)=>{
+    res.send('您所访问的资源去了火星');
+});
+```
+
+### 路由的链式响应
+
+#### 基本语法：
+
+```
+引用.route(路由).响应方法(callback)[.响应方法(callback).响应方法(callback)]
+```
+
+#### 案例
+
+```
+app.route("/a").put((req,res)=>{
+    res.send('我是put响应');
+}).patch((req,res)=>{
+    res.send('我是patch');
+}).all((req,res)=>{
+    res.send('我是a路由的all');
+});
 ```
 
 ### 子路由
@@ -279,26 +406,41 @@ app.use([path,] callback [, callback...])
 ##### 子路由文件1
 
 ```
-
+const express=require("express");
+const router=express.Router();
+router.get("/a",(req,res)=>{
+    res.send("我是one的a路由");
+});
+module.exports=router;
 ```
 
 ##### 子路由文件2
 
 ```
-
+const express=require("express");
+const router=express.Router();
+router.get("/a",(req,res)=>{
+    res.send("我是two的a路由");
+});
+module.exports=router;
 ```
 
 ##### 主路由文件
 
 ```
-
+const express=require('express');
+const app=express();
+app.use("/",require("./router/oneRouter"));
+app.use(require("./router/oneRouter"));
+app.use("/a/b",require("./router/towRouter"));
+app.listen(1234,"192.168.1.53");
 ```
 
 ## 五、中间件
 
 ### **概念**
 
-中间件（Middleware ），指业务流程的中间处理环节。也是特殊的路由，通常指在处理请求过程中，需要对响应数据进行多次加工处理时，采用中间件加工模式。
+中间件（Middleware ），指业务流程的中间处理环节，通常指在处理请求过程中，需要对响应数据进行多次加工处理时，采用中间件加工模式。
 
 ![中间件](E:\授课内容\中公\node课程\笔记\img\中间件.png)
 
@@ -319,29 +461,47 @@ app.use([path,] callback [, callback...])
 ```
 app.use([前缀,]中间件函数)
 //中间函数
-([arg,]req,res,next)=>{
-          //next，移交响应控制权。当中间件处理完毕以后要进行下一个处理环节，但作为特殊的路由的时候next可以省略。
-}
+([arg,]req,res,next)=>{}
 ```
 
+#### 参数
+
+arg，获取上一个中间件的next方法的参数
+
+req，请求对象
+
+res，响应对象
+
+next，移交响应控制权。当中间件处理完毕以后要进行下一个处理环节，但作为特殊的路由的时候next可以省略。如果采用next移交控制权，则在中间件体内不能由响应结束方法。且next如果由参数，不采用四个参数的中间件去接收，则自动结束响应。
+
 #### 案例
+
+##### 两个参数的中间件
+
+可以看作特殊的路由
+
+```
+app.use((req,res)=>{
+    res.send("我是挂载的send");
+});
+```
 
 ##### 三个参数的中间件
 
 ```
-
+app.use((req,res,next)=>{
+    //console.log("我是中间件，你路过了");
+    next("我是中间件，你路过了");
+});
 ```
 
 ##### 四个参数的中间件
 
 ```
-
-```
-
-##### 特殊的路由
-
-```
-
+app.use("/a",(arg,req,res,next)=>{
+    console.log(`四个参数，${arg}`);
+    next();
+});
 ```
 
 ### 中间件的前缀
@@ -349,7 +509,13 @@ app.use([前缀,]中间件函数)
 在某些情况下有些请求是不需要经过中间件处理的，因此可以给中间件加上特定路由前缀，达到按规则过滤响应。
 
 ```
-
+app.use("/a",(arg,req,res,next)=>{
+    console.log(`四个参数，${arg}`);
+    next();
+});
+app.get("/a",(req,res)=>{
+    res.send("我是首页路由！");
+});
 ```
 
 ### 使用中间件注意事项： 
@@ -378,7 +544,9 @@ app.use([前缀,]中间件函数)
 当请求没有匹配到响应路由时，则会匹配此中间件，把它称为404中间件，也叫404资源不存在响应。
 
 ```
-
+app.use((err,req,res,next)=>{
+    res.send("您所访问的资源不存在！");
+});
 ```
 
 **案例：处理服务器运行时错误**
@@ -386,7 +554,16 @@ app.use([前缀,]中间件函数)
 在代码运行时，服务器可能会出现代码运行时错误，这类错误是由服务器运行时产生，这类错误叫服务器运行时错误。
 
 ```
-
+app.get("/",(req,res)=>{
+    // console.log(age);
+    // let age=30;
+    throw new Error("我是错误");
+    res.send("我是路由");
+});
+app.use((err,req,res,next)=>{
+    console.log(err.message);
+    res.send("服务器繁忙，请稍后！");
+});
 ```
 
 **注：**错误级别的中间件，必须在应用级中间件的最后面，防止漏掉捕获！
@@ -410,9 +587,7 @@ Express框架API自带的一些常用中间件，被称作内置中间件。
 **案例**
 
 ```
-//express.static(静态资源路径),部署项目中的静态资源，静态资源服务器。
-//静态资源服务器默认会将当前路径下的index.html绑定给首页路由，将文件/文件夹的名字自动转换为路由
-app.use(express.static(path.join(__dirname,"public")));//将public文件夹下所有的文件部署为静态资源。
+app.use(express.static(path.join(__dirname,"public")));
 ```
 
 ##### json
@@ -438,7 +613,6 @@ app.use(express.static(path.join(__dirname,"public")));//将public文件夹下�
 ```
 //处理Post请求参数的中间件
 app.use(express.urlencoded({extended:true}));
-
 //更好的处理JSON格式的数据
 app.use(express.json());
 ```
@@ -521,7 +695,26 @@ res.signedCookies//获取签名cookie
 ##### 服务器端代码案例
 
 ```
-
+const express=require("express");
+const cookiePaser=require('cookie-parser');
+const app=express();
+app.use(cookiePaser("sdfsdfsdf"));
+app.get("/",(req,res)=>{
+    res.cookie("username","web1129",{
+        //expires:new Date(Date.now()+1000*60*60*24*365*10000)
+        maxAge:60*5*1000
+    });
+    res.cookie("pwd","sdfsdfsdf",{
+        //expires:new Date(Date.now()+1000*60*60*24*365*10000)
+        maxAge:60*5*1000,
+        //signed:true
+    });
+    res.send("欢迎来到我的世界");
+});
+app.get("/getcookie",(req,res)=>{
+    res.send(req.cookies);
+});
+app.listen(1111,"192.168.1.53");
 ```
 
 ### 处理Session中间件
@@ -596,7 +789,22 @@ req.session.变量名
 ##### 服务器端代码案例
 
 ```
-
+const express=require('express');
+const session=require('cookie-session');
+const app=express();
+app.use(session({
+    name:"sdfsdf",
+    keys:['aaa','bbb','ccc'],
+    maxAge:1000*60*5
+}));
+app.get("/",(req,res)=>{
+    req.session={"username":"sdfsdfsdfsetergery"};
+    res.send("我是存session");
+});
+app.get("/getsession",(req,res)=>{
+    res.send(req.session); 
+});
+app.listen(1111,"192.168.1.59");
 ```
 
 ### 表单数据处理中间件
@@ -623,13 +831,60 @@ npm i formidable@latest
 ##### 浏览器端代码
 
 ```
- 
+     <form action="/formload" name="f1" method="post" enctype="multipart/form-data">
+        <input type="text" name="username" id="username">
+        <input type="password" name="pwd" id="pwd">
+        <input type="checkbox" name="ins" id="ins" value="1111">
+        <input type="radio" name="rad" id="rad" value="2222">
+        <select name="isadmin" id="isadmin">
+            <option value="1">ccccc</option>
+        </select>
+        <textarea name="cname" id="cname" cols="30" rows="10"></textarea>
+        <input type="file" name="ff1" id="ff1">
+        <input type="date" name="ddd" id="ddd">
+        <input type="email" name="em" id="em">
+        <input type="submit" value="提交">
+    </form> 
 ```
 
 ##### 服务器端代码
 
 ```
-
+const express=require("express");
+const formable=require("formidable");
+const {v4:uuid}=require("uuid");
+const path=require("path");
+const fs=require("fs");
+const app=express();
+app.use(express.static(path.join(__dirname,"public")));
+app.post("/formload",(req,res)=>{
+    //formidable默认只支持200MB
+    let from=formable({
+        maxFileSize:1024*1024*1024*1024*1024
+    });
+    //fileds,获取提交表单的所有元素的键值对。
+    from.parse(req,(err,fileds,files)=>{
+        console.log(files);
+        let filename=`${uuid()}-${files.ff1.originalFilename}`;
+        //fs.createReadStream(读取文件的路径);//创建读文件流
+        let rs=fs.createReadStream(files.ff1.filepath);
+        //fs.createWriteStream(文件写入的路径)//创建写文件流
+        let ws=fs.createWriteStream(path.join(__dirname,"public/img",filename));
+        //pipe,管道流
+        rs.pipe(ws);
+        if(files.ff1.mimetype.includes("image")){
+            res.send(`<img src="/img/${filename}"><br><a href="/">返回</a>`);
+        }else if(files.ff1.mimetype.includes("video")||files.ff1.mimetype.includes("audio")){
+            res.send(`<video controls>
+                <source src="/img/${filename}"></source>
+            </video>
+            <br><a href="/">返回</a>`)
+        }else{
+            res.send(`文件上传成功！<a href="/">返回</a>`);
+        }
+    });
+});
+app.listen(1111,"192.168.1.59");
 ```
 
 ### 表单数据验证中间件
@@ -645,7 +900,8 @@ npm i validator
 #### 案例
 
 ```
-
+const vali=require("validator");
+console.log(vali.isEmail("sdfsdfsdfs@234"));
 ```
 
 ### 表单校验码中间件
@@ -661,7 +917,35 @@ npm i svg-captcha
 #### 案例
 
 ```
-
+const express=require("express");
+const svgc=require("svg-captcha");
+const app=express();
+app.get("/",(req,res)=>{
+    //生成字符类型的校验码
+    // let captcha=svgc.create({
+    //     size:4,//设置校验码的字符数，默认是4
+    //     noise:1,//设置干扰线的条数，默认是1
+    //     fontSize:18,//设置字符的大小
+    //     width:300,//设置校验码图片的宽度
+    //     height:300,//设置校验码图片的高度
+    //     color:false,//设置校验码字符的颜色，只支持布尔类型。
+    //     background:"black",//设置校验码的背景色，注：当设置背景色后，color属性自动失效，其值为true
+    //     "ignoreChars":"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuuvwxyz1234567890"//设置排他字符串。
+    // });
+    let captcha=svgc.createMathExpr({
+        fontSize:30,
+        width:300,
+        height:100,
+        color:true,
+        background:"blue",
+        mathMax:88888,//设置运算的最大值，默认值是9
+        mathMin:-99999,//设置运算的最小值，默认值是1
+        mathOperator:"-"//设置计算的运算模式，只支持"+/-"
+    });
+    console.log(captcha.text);
+    res.send(captcha.data);
+});
+app.listen(1111,"192.168.1.59");
 ```
 
 ### 跨域中间件
@@ -864,13 +1148,65 @@ res.render( '模板名称' ,[ data ])
 #### 服务器端代码
 
 ```
-
+const express=require("express");
+const app=express();
+// app.set("views",'aaa');
+app.set("view engine","ejs");
+app.get("/",(req,res)=>{
+    res.render("index",{"username":'admin',userlist:[{"userid":8,"username":"admin9","pwd":"123456","isadmin":"0"},{"userid":12,"username":"admin","pwd":"123456","isadmin":"1"},{"userid":22,"username":"admin10","pwd":"123456","isadmin":"0"},{"userid":27,"username":"rypy","pwd":"1234567sfsdfsdf","isadmin":"0"},{"userid":28,"username":"admin1","pwd":"123456","isadmin":"1"},{"userid":32,"username":"admin7","pwd":"123","isadmin":"0"},{"userid":35,"username":"admin10","pwd":"123","isadmin":"0"},{"userid":48,"username":"sdfsdf","pwd":"sdfsdfsdf","isadmin":"0"},{"userid":54,"username":"zsyy","pwd":"adsfadsf","isadmin":"0"}]});
+});
+app.listen(1111,"192.168.1.59");
 ```
 
 #### 页面代码
 
 ```
-
+<!-- ejs模板引擎支持html,css,js ,es全部语法-->
+    <!-- ejs书写js/es语法-->
+    <%
+        let age=20;
+        console.log(age);//终端输出。
+        let str=`<h1 style="color:red;">sssssss</h1>`;
+    %>
+    <br>
+    我的年龄是<%=age%>
+    <br>
+    <!--输出变量标签  =不转义HTML标签 -转义HTML标签 -->
+    <%=str%>
+    <%-str%>
+    <%# 我是注释！EJS的注释不会被转义成HTML语法 %>
+    我<%=age>18?"成年":'未成年'%>人
+    <%if(age>20){%>
+        可以进入
+    <%} else { %> 
+        不能进入
+    <%}%>
+    <br>
+    <%# 输出服务器端传递的参数 %>
+    我的用户名是<%=username%>  
+    <br>
+    <table border="1">
+        <thead>
+            <th><input type="checkbox">全选</th>
+            <th>用户ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>权限</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            <% for(let item of userlist) {%>
+                <tr>
+                    <td><%=item.userid%></td>
+                    <td><%=item.username%></td>
+                    <td><%=item.pwd%></td>
+                    <td><%=item.isadmin%></td>
+                    <td></td>
+                </tr>
+            <% } %>
+        </tbody>    
+    </table>
+<%- include("footer",{username}) %>
 ```
 
 ## 七、Express脚手架
