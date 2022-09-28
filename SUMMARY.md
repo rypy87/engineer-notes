@@ -25,5 +25,6 @@
   * [React基础](react-quan-jia-tong/react-ji-chu.md)
   * [Redux状态机](react-quan-jia-tong/redux-zhuang-tai-ji.md)
   * [React HOOKS](react-quan-jia-tong/react-hooks.md)
+* [常见渲染模式](chang-jian-xuan-ran-mo-shi.md)
 * [GitBook使用](gitbook-shi-yong/README.md)
   * [自有域名设置](gitbook-shi-yong/zi-you-yu-ming-she-zhi.md)
