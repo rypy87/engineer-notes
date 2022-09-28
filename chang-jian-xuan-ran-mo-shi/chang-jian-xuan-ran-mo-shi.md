@@ -10,7 +10,7 @@
 
 ## 服务器端渲染
 
-服务器端渲染,SSR(Server Side Render),页面上的内容是通过服务端渲染生成的，浏览器直接显示服务端返回的html就可以了。
+服务器端渲染,SSR(Server Side Render),页面上的内容是通过服务端渲染生成的，浏览器直接显示服务端返回的html就可以了。在遇到首页白屏的情况下，服务器端渲染用时会少些。
 
 ![服务器端渲染](D:\GitHub work\engineer-notes\chang-jian-xuan-ran-mo-shi\img\服务器端渲染.jpg)
 
