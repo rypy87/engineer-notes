@@ -2,9 +2,9 @@
 
 ## VUE简介
 
-英文官网：https://vuejs.org/
+英文官网：[https://v2.vuejs.org/](https://v2.vuejs.org/)
 
-中文官网：https://cn.vuejs.org/
+中文官网：[https://v2.cn.vuejs.org/](https://v2.cn.vuejs.org/)
 
 ### 作者
 
