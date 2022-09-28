@@ -18,6 +18,7 @@
   * [Vue3.0基础](vue-quan-jia-tong/vue3.0-ji-chu.md)
   * [Vue2.0基础](vue-quan-jia-tong/vue2.0-ji-chu.md)
   * [VueX](vue-quan-jia-tong/vuex.md)
+  * [VUE设计模式](vue-quan-jia-tong/vue-she-ji-mo-shi.md)
   * [Pinia](vue-quan-jia-tong/pinia.md)
 * [React全家桶](react-quan-jia-tong/README.md)
   * [React基础](react-quan-jia-tong/react-ji-chu.md)

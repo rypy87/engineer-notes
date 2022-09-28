@@ -1,6 +1,6 @@
 # Vue2.0基础
 
-## UE简介
+## VUE简介
 
 英文官网：https://vuejs.org/
 
@@ -2354,7 +2354,7 @@ vue.config.js			// 书写基于webpack的一些处理(从简单到详细)
 
 ### 菜单选项说明
 
-![构建项目菜单](E:%5C%E6%8E%88%E8%AF%BE%E5%86%85%E5%AE%B9%5C%E4%B8%AD%E5%85%AC%5CVUE%E8%AF%BE%E7%A8%8B%5C%E7%AC%94%E8%AE%B0%5C2022%E5%B9%BF%E5%B7%9EWeb%E5%85%A8%E6%A0%88%E9%9D%A2%E6%8E%88%E5%B0%B1%E4%B8%9A%E7%8F%AD10%E7%8F%AD%5Cimg%5C%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE%E8%8F%9C%E5%8D%95.png)
+<figure><img src="../.gitbook/assets/构建项目菜单.png" alt=""><figcaption></figcaption></figure>
 
 Default (\[Vue 3] babel, eslint) 默认Vue3配置
 
@@ -3317,12 +3317,6 @@ export default {
 }
 </script>
 ```
-
-**v-bind指令+props属性方式案例**
-
-完成下面功能
-
-![父传子案例](E:%5C%E6%8E%88%E8%AF%BE%E5%86%85%E5%AE%B9%5C%E4%B8%AD%E5%85%AC%5CVUE%E8%AF%BE%E7%A8%8B%5C%E7%AC%94%E8%AE%B0%5C2022%E5%B9%BF%E5%B7%9EWeb%E5%85%A8%E6%A0%88%E9%9D%A2%E6%8E%88%E5%B0%B1%E4%B8%9A%E7%8F%AD10%E7%8F%AD%5Cimg%5C%E7%88%B6%E4%BC%A0%E5%AD%90%E6%A1%88%E4%BE%8B.png)
 
 #### emit方式
 
