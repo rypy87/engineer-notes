@@ -42,4 +42,4 @@
 
 10.将dom树和CSS DOM树构造成render树
 
-1. 渲染render树
+11.渲染render树
