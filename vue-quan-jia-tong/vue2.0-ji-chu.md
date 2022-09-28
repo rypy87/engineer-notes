@@ -3947,7 +3947,7 @@ export default {
 
 通过Vue原型链上的事件总线，实现事件的触发和监听，来完成数据的传递。
 
-![非父子组件通信原理](E:%5C%E6%8E%88%E8%AF%BE%E5%86%85%E5%AE%B9%5C%E4%B8%AD%E5%85%AC%5CVUE%E8%AF%BE%E7%A8%8B%5C%E7%AC%94%E8%AE%B0%5C2022%E5%B9%BF%E5%B7%9EWeb%E5%85%A8%E6%A0%88%E9%9D%A2%E6%8E%88%E5%B0%B1%E4%B8%9A%E7%8F%AD10%E7%8F%AD%5Cimg%5C%E9%9D%9E%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86.png)
+<figure><img src="../.gitbook/assets/总线案例.png" alt=""><figcaption></figcaption></figure>
 
 **使用步骤**
 
