@@ -5327,7 +5327,7 @@ savedPosition锚点位置
 
 2、next中的重定向和编程式导航有冲突。我们的解决办法就是在编程式导航后面添加第二个参数就好了。
 
-![编程导航和路由守卫不同路由跳转报错](E:%5C%E6%8E%88%E8%AF%BE%E5%86%85%E5%AE%B9%5C%E4%B8%AD%E5%85%AC%5CVUE%E8%AF%BE%E7%A8%8B%5C%E7%AC%94%E8%AE%B0%5C2022%E5%B9%BF%E5%B7%9EWeb%E5%85%A8%E6%A0%88%E9%9D%A2%E6%8E%88%E5%B0%B1%E4%B8%9A%E7%8F%AD10%E7%8F%AD%5Cimg%5C%E7%BC%96%E7%A8%8B%E5%AF%BC%E8%88%AA%E5%92%8C%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB%E4%B8%8D%E5%90%8C%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E6%8A%A5%E9%94%99.png)
+<figure><img src="../.gitbook/assets/编程导航和路由守卫不同路由跳转报错.png" alt=""><figcaption></figcaption></figure>
 
 ```
 this.$router.push(`/list`,()=>{});
