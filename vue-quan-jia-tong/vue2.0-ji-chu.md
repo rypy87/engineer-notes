@@ -3607,7 +3607,7 @@ div{
 
 在子组件中slot写在哪里内容就会展示在哪里，展示的顺序和在父组件中书写的顺序有关，也就是说会把父组件中的内容原封不动的展示在子组件中。
 
-![插槽](E:%5C%E6%8E%88%E8%AF%BE%E5%86%85%E5%AE%B9%5C%E4%B8%AD%E5%85%AC%5CVUE%E8%AF%BE%E7%A8%8B%5C%E7%AC%94%E8%AE%B0%5C2022%E5%B9%BF%E5%B7%9EWeb%E5%85%A8%E6%A0%88%E9%9D%A2%E6%8E%88%E5%B0%B1%E4%B8%9A%E7%8F%AD10%E7%8F%AD%5Cimg%5C%E6%8F%92%E6%A7%BD.png)
+<figure><img src="../.gitbook/assets/插槽.png" alt=""><figcaption></figcaption></figure>
 
 **语法：**
 
