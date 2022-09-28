@@ -1,10 +1,8 @@
 ---
-description: 学习过程是以3.0为主，顺带VUE2.0相关知识。
+description: 学习过程是以React 18主版本为主
 ---
 
-# VUE3.0
-
-## 本节知识需要
+# React全家桶
 
 前端技术基础ES语法
 
@@ -13,5 +11,7 @@ description: 学习过程是以3.0为主，顺带VUE2.0相关知识。
 计算机网络
 
 计算机组成原理
+
+Web前端技术技术(HTML,CSS,JavaScript)
 
 相关知识逐步增加........构建中。
