@@ -1,4 +1,4 @@
-# Node基础知识API
+# Node基础
 
 ### Node简介
 
@@ -16,7 +16,7 @@ Node.js可以使用在任意操作系统上，可以开发与系统硬件交互�
 
 **中文：**[https://nodejs.org/zh-cn/](https://nodejs.org/zh-cn/)
 
-**中文官方论坛cnodejs：**[https://cnodejs.org/](https://cnodejs.org)
+**中文官方论坛cnodejs：**[https://cnodejs.org/](https://cnodejs.org/)
 
 #### Node特点
 
@@ -766,9 +766,9 @@ npm社区，全球最大的JavaScript开源生态系统库，该社区提供了�
 
 **网址：**
 
-[https://www.npmjs.com/](https://www.npmjs.com)
+[https://www.npmjs.com/](https://www.npmjs.com/)
 
-[https://www.npmjs.cn/](https://www.npmjs.cn)
+[https://www.npmjs.cn/](https://www.npmjs.cn/)
 
 **常用命令**
 
