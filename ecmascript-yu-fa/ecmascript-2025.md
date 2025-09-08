@@ -4,7 +4,13 @@
 
 ### 概念
 
-我们俗称的ECMAScript(简称ES),指的就是ECMAScript 6.0(ES6)，是 JavaScript 语言的下一代标准，在 2015 年 6 月正式发布。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。
+ECMAScript，简称ES，第6版本正式被推广。
+
+ECMAScript 6.0(ES6)，是 JavaScript 语言的下一代标准，在 2015 年 6 月正式发布。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。
+
+#### ECMA
+
+ECMA:(欧洲计算机制造商协会)，这个组织的目标是评估、开发和认可计算机标准。
 
 **ECMAScript与JavaScript的关系是**
 
@@ -12,20 +18,23 @@
 
 ### 版本发展史
 
-| **年份** | **版本**              |
-| -------- | --------------------- |
-| 1997     | ECMAScript 1.0        |
-| 1998     | ECMAScript 2.0        |
-| 1999     | ECMAScript 3.0        |
-| 2009/12  | ECMAScript 5.0        |
-| 2015/06  | ECMAScript 2015(ES6)  |
-| 2016/06  | ECMAScript 2016(ES7)  |
-| 2017/06  | ECMAScript 2017(ES8)  |
-| 2018/06  | ECMAScript 2018(ES9)  |
-| 2019/06  | ECMAScript 2019(ES10) |
-| 2020/06  | ECMAScript 2020(ES11) |
-| 2021/06  | ECMAScript 2021(ES12) |
-| 2022/06  | ECMAScript 2022(ES13) |
+| **年份** | **版本**               |
+| -------- | ---------------------- |
+| 1997     | ECMAScript 1.0         |
+| 1998     | ECMAScript 2.0         |
+| 1999     | ECMAScript 3.0         |
+| 2009/12  | ECMAScript 5.0         |
+| 2015/06  | ECMAScript 2015(ES6)   |
+| 2016/06  | ECMAScript 2016(ES7)   |
+| 2017/06  | ECMAScript 2017(ES8)   |
+| 2018/06  | ECMAScript 2018(ES9)   |
+| 2019/06  | ECMAScript 2019(ES10)  |
+| 2020/06  | ECMAScript 2020(ES11)  |
+| 2021/06  | ECMAScript 2021(ES12)  |
+| 2022/06  | ECMAScript 2022(ES13)  |
+| 2023/06  | ECMAScript 2023(ES14)  |
+| 2024/06  | ECMAScript  2024(ES15) |
+| 2025/06  | ECMAScript  2025(ES16) |
 
 ## ECMAScript运行环境
 
